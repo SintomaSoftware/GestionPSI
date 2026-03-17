@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad - Gestión PSI</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; color: #333; max-width: 800px; margin: auto; }
+        h1 { color: #2c3e50; }
+        h2 { color: #34495e; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .tech-box { background: #f9f9f9; border-left: 5px solid #673ab7; padding: 15px; margin: 20px 0; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>Política de Privacidad - Gestión PSI</h1>
+    <p><strong>Última actualización:</strong> 16 de marzo de 2026</p>
+
+    <h2>1. Compromiso de Privacidad</h2>
+    <p>Gestión PSI es una herramienta diseñada para profesionales de la salud mental. Entendemos la sensibilidad de la información manejada y aplicamos estándares de seguridad rigurosos.</p>
+
+    <h2>2. Seguridad y Cifrado de Datos</h2>
+    <div class="tech-box">
+        Gestión PSI implementa estrictas medidas de seguridad. Todo el tráfico de datos entre el dispositivo y nuestra infraestructura está cifrado mediante protocolos <strong>TLS (HTTPS)</strong>. Para los datos altamente sensibles (DNI, credenciales, notas clínicas y observaciones), implementamos una capa de encriptación mediante el algoritmo <strong>Base64 con integridad UTF-8</strong> antes de su almacenamiento. La gestión de claves se realiza a través de servicios de secretos de Google, asegurando que los datos en reposo no sean accesibles sin las credenciales autorizadas del profesional.
+    </div>
+
+    <h2>3. Datos Recopilados</h2>
+    <ul>
+        <li><strong>Autenticación:</strong> Dirección de correo electrónico del profesional.</li>
+        <li><strong>Sesión:</strong> Se genera un token aleatorio único almacenado en el <i>localStorage</i> del dispositivo para mantener la sesión activa de forma segura.</li>
+        <li><strong>Datos de Pacientes:</strong> Los datos ingresados por el profesional se almacenan exclusivamente en la infraestructura de Google Cloud (Apps Script/Sheets) del propietario.</li>
+    </ul>
+
+    <h2>4. Eliminación de Datos</h2>
+    <p>Los usuarios pueden solicitar la eliminación total de su cuenta y registros asociados enviando un correo electrónico a: <strong>christianpardo2010@gmail.com</strong>. El proceso de eliminación se completará en un plazo máximo de 72 horas.</p>
+
+    <h2>5. Flujo de Información</h2>
+    <p>Los datos no transitan por servidores de terceros. GitHub se utiliza únicamente para el alojamiento del frontend, mientras que la información sensible viaja directamente hacia los servidores de Google.</p>
+
+    <p>Para cualquier duda, contáctenos en: <strong>christianpardo2010@gmail.com</strong></p>
+</body>
+</html>
