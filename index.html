@@ -49,7 +49,8 @@
 
         let iframeSrc = SCRIPT_URL;
         if (sesionEmail && sesionToken) {
-            iframeSrc += `?e=${encodeURIComponent(sesionEmail)}&t=${encodeURIComponent(sesionToken)}`;
+        const walkthrough = localStorage.getItem("psi_onboarding_status") || "INACTIVO";
+        iframeSrc += `?e=${encodeURIComponent(sesionEmail)}&t=${encodeURIComponent(sesionToken)}&w=${encodeURIComponent(walkthrough)}`;
         }
 
         document.getElementById('appFrame').src = iframeSrc;
