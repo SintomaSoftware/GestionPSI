@@ -55,7 +55,7 @@
 
   .nav-link:hover { opacity: 1; }
 
-/* HERO - Ajustado para atmósfera continua */
+/* HERO - Ajustado para integración visual */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -63,22 +63,32 @@
     padding: 120px 40px 80px;
     position: relative;
     overflow: hidden;
-    /* Fondo oscuro base */
-    background: #050505;
+    /* Fondo radial suave que une ambos lados */
+    background: radial-gradient(circle at 80% 50%, rgba(108,92,231,0.08) 0%, rgba(5,5,5,1) 70%);
   }
 
-  /* Eliminamos el gradiente del hero::before anterior si lo habías puesto */
-  .hero::before { display: none; }
+  /* La mancha de luz detrás de los equipos */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(162,155,254,0.1) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-  /* Contenedor de Texto con la atmósfera violeta continua */
-  .hero-text {
-    /* Mismo gradiente y estilo que la imagen de la derecha */
-    background: linear-gradient(135deg, rgba(162,155,254,0.15), rgba(108,92,231,0.08));
-    border: 1px solid rgba(162,155,254,0.1);
-    padding: 40px;
-    border-radius: 28px;
-    /* Sombra suave para integración */
-    box-shadow: 0 10px 40px rgba(108,92,231,0.05);
+  .hero-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
   }
 
   .hero-text h1 {
@@ -119,41 +129,10 @@
     letter-spacing: 0.5px;
   }
 
- .btn-group {
+  .btn-group {
     display: flex;
-    gap: 16px; /* Espacio entre los botones */
-    align-items: flex-start; /* Alinea los botones arriba */
+    gap: 14px;
     flex-wrap: wrap;
-    margin-top: 32px; /* Separación con las tags */
-  }
-
- /* NUEVA CLASE: Contenedor para nivelar los botones */
-  .btn-store-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #050505; /* Fondo negro para que el badge de Google no se vea gris */
-    border: 1px solid rgba(255,255,255,0.15); /* Borde sutil para App Store */
-    border-radius: 12px;
-    /* ALTURA EXACTA PARA AMBOS */
-    height: 52px; 
-    padding: 2px 12px; /* Ajuste interno */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: all 0.3s;
-    text-decoration: none;
-  }
-
-  .btn-store-wrapper:hover {
-    transform: translateY(-2px);
-    border-color: rgba(162,155,254,0.5);
-    box-shadow: 0 8px 20px rgba(108,92,231,0.2);
-  }
-
-  .btn-store-wrapper img {
-    height: 100%; /* Ocupa todo el contenedor */
-    width: auto;
-    display: block;
-    object-fit: contain; /* Asegura que se vea todo sin cortarse */
   }
 
   .btn-primary {
@@ -618,17 +597,14 @@
         <span class="hero-tag">Prepagas</span>
         <span class="hero-tag">Autorizaciones</span>
       </div>
-     <div class="btn-group">
-        <a href="#cta" class="btn-store-wrapper">
+     <div class="btn-group" style="align-items:center; gap:0px;">
+        <a href="#cta">
           <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" 
-               alt="Disponible en Google Play">
+               alt="Disponible en Google Play" class="google-play-btn">
         </a>
-        
-        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
-          <a href="#" class="btn-store-wrapper" style="opacity: 0.5; cursor: not-allowed; pointer-events: none; padding: 2px 10px;">
-            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" 
-                 alt="Próximamente en App Store">
-          </a>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:4px; margin-left: 10px;">
+          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" 
+               alt="Próximamente en App Store" class="app-store-btn" style="opacity: 0.8; filter: grayscale(0.5);">
           <span style="font-size:0.65rem; color:rgba(255,255,255,0.5); font-weight:600; letter-spacing:0.5px; text-transform: uppercase;">Próximamente</span>
         </div>
       </div>
