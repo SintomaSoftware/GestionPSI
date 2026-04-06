@@ -176,28 +176,24 @@
     background: rgba(162,155,254,0.05);
   }
 
- /* Ajuste de botones para que se vean del mismo tamaño */
-  .google-play-btn {
-    height: 68px !important; /* Más alto para compensar el margen interno de la imagen */
-    margin-left: -10px; /* Compensa el espacio en blanco de la imagen de Google */
-  }
-
-  .app-store-btn {
-    height: 46px !important; /* Altura real para matchear visualmente */
-    border-radius: 8px;
-  }
+.google-play-btn { height: 56px !important; margin-left: -8px; }
+ 
+.app-store-btn { height: 56px !important; border-radius: 8px; }
+ 
   .hero-image {
     position: relative;
     display: flex;
     justify-content: center;
   }
 
-  .hero-image img {
+.hero-image img {
     width: 100%;
     max-width: 520px;
     border-radius: 20px;
     filter: drop-shadow(0 20px 60px rgba(108,92,231,0.3));
-  }
+    mask-image: radial-gradient(ellipse 85% 85% at 60% 50%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 85% 85% at 60% 50%, black 40%, transparent 100%);
+}
 
   /* FEATURES */
   .features {
