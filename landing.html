@@ -176,9 +176,22 @@
     background: rgba(162,155,254,0.05);
   }
 
-.google-play-btn { height: 56px !important; margin-left: -8px; }
- 
-.app-store-btn { height: 56px !important; border-radius: 8px; }
+.store-badge-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    overflow: hidden;
+}
+
+.google-play-btn {
+    height: 78px;
+    margin: 0 -12px;
+}
+
+.app-store-btn {
+    height: 52px;
+}
  
   .hero-image {
     position: relative;
@@ -593,17 +606,19 @@
         <span class="hero-tag">Prepagas</span>
         <span class="hero-tag">Autorizaciones</span>
       </div>
-     <div class="btn-group" style="align-items:center; gap:0px;">
-        <a href="#cta">
-          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" 
-               alt="Disponible en Google Play" class="google-play-btn">
-        </a>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:4px; margin-left: 10px;">
-          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" 
-               alt="Próximamente en App Store" class="app-store-btn" style="opacity: 0.8; filter: grayscale(0.5);">
-          <span style="font-size:0.65rem; color:rgba(255,255,255,0.5); font-weight:600; letter-spacing:0.5px; text-transform: uppercase;">Próximamente</span>
+<div class="btn-group" style="align-items:center; gap:12px;">
+    <a href="#cta" class="store-badge-wrapper">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" 
+             alt="Google Play" class="google-play-btn">
+    </a>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <div class="store-badge-wrapper">
+            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" 
+                 alt="App Store" class="app-store-btn">
         </div>
-      </div>
+        <span style="font-size:0.65rem; color:rgba(255,255,255,0.5); font-weight:600; letter-spacing:0.5px; text-transform:uppercase;">Próximamente</span>
+    </div>
+</div>
     </div>
     <div class="hero-image">
       <img src="https://sintomasoftware.com.ar/assets/imagenes/hero.jpeg" 
