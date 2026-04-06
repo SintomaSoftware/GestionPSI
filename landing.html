@@ -55,7 +55,7 @@
 
   .nav-link:hover { opacity: 1; }
 
-  /* HERO */
+/* HERO - Ajustado para integración visual */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -63,17 +63,22 @@
     padding: 120px 40px 80px;
     position: relative;
     overflow: hidden;
+    /* Fondo radial suave que une ambos lados */
+    background: radial-gradient(circle at 80% 50%, rgba(108,92,231,0.08) 0%, rgba(5,5,5,1) 70%);
   }
 
+  /* La mancha de luz detrás de los equipos */
   .hero::before {
     content: '';
     position: absolute;
-    top: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(108,92,231,0.15) 0%, transparent 70%);
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(162,155,254,0.1) 0%, transparent 65%);
     pointer-events: none;
+    z-index: 0;
   }
 
   .hero-content {
@@ -171,6 +176,16 @@
     background: rgba(162,155,254,0.05);
   }
 
+ /* Ajuste de botones para que se vean del mismo tamaño */
+  .google-play-btn {
+    height: 68px !important; /* Más alto para compensar el margen interno de la imagen */
+    margin-left: -10px; /* Compensa el espacio en blanco de la imagen de Google */
+  }
+
+  .app-store-btn {
+    height: 46px !important; /* Altura real para matchear visualmente */
+    border-radius: 8px;
+  }
   .hero-image {
     position: relative;
     display: flex;
@@ -582,15 +597,15 @@
         <span class="hero-tag">Prepagas</span>
         <span class="hero-tag">Autorizaciones</span>
       </div>
-      <div class="btn-group" style="align-items:center; gap:16px;">
+     <div class="btn-group" style="align-items:center; gap:0px;">
         <a href="#cta">
           <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" 
-               alt="Disponible en Google Play" style="height: 60px;">
+               alt="Disponible en Google Play" class="google-play-btn">
         </a>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:4px; margin-left: 10px;">
           <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" 
-               alt="Próximamente en App Store" style="height: 60px; pointer-events:none;">
-          <span style="font-size:0.7rem; color:white; font-weight:600; letter-spacing:0.5px;">Próximamente</span>
+               alt="Próximamente en App Store" class="app-store-btn" style="opacity: 0.8; filter: grayscale(0.5);">
+          <span style="font-size:0.65rem; color:rgba(255,255,255,0.5); font-weight:600; letter-spacing:0.5px; text-transform: uppercase;">Próximamente</span>
         </div>
       </div>
     </div>
