@@ -56,73 +56,71 @@
   .nav-link:hover { opacity: 1; }
 
 .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    /* Aumentamos el padding lateral para el texto a la izquierda */
-    padding: 120px 60px 80px; /* Incrementado de 40px a 60px */
-    position: relative;
-    overflow: hidden;
-    /* NUEVA IMAGEN Y AJUSTES DE POSICIONAMIENTO */
-    background-image: url('assets/imagenes/hero_main.png'); /* Ruta relativa actualizada */
-    background-size: cover;
-    /* Forzamos que la imagen se alinee a la derecha para mostrar los equipos */
-    background-position: center right;
-    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://sintomasoftware.com.ar/assets/imagenes/hero_main.png');
+    background-size: cover;
+    background-position: center right;
 }
 
-/* El pseudo-elemento .hero::before sigue igual, 
-   asegura el gradiente para legibilidad del texto */
 .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Ajustamos el gradiente: más oscuro a la izquierda (texto) y claro a la derecha (equipos) */
-    background: linear-gradient(to right, rgba(5,5,5,0.95) 30%, rgba(5,5,5,0.4) 100%);
-    z-index: 0;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(5,5,5,0.95) 40%, rgba(5,5,5,0.3) 100%);
+    z-index: 0;
 }
 
-/* Forzamos que el contenido ocupe solo la mitad izquierda */
 .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 50%; /* El texto solo ocupa la mitad izquierda */
-    margin-right: auto; /* Se alinea a la izquierda */
+    position: relative;
+    z-index: 1;
 }
 
-/* Aseguramos que el h1 tenga un margen inferior adecuado */
-.hero-text h1 {
-    font-size: clamp(2.2rem, 5vw, 3.6rem); /* Ligeramente más grande para aprovechar el espacio */
-    font-weight: 800;
-    line-height: 1.1;
-    color: white;
-    margin-bottom: 24px; /* Incrementado de 20px */
-}
+.hero-image { display: none; }
 
-/* Re-activamos la hero-image para móviles si es necesario, 
-   pero para desktop la mantenemos oculta ya que los equipos están en el fondo */
-@media (min-width: 769px) {
-    .hero-image { display: none; }
-}
+  .hero-text h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 20px;
+  }
 
-/* RESPONSIVE - AJUSTE PARA HERO */
-  @media (max-width: 768px) {
-    /* ... otros estilos existentes ... */
-    
-    .hero { 
-      padding: 100px 20px 60px;
-      /* En móviles, centramos la imagen para que se vea la esencia del diseño */
-      background-position: center; 
-    }
-    .hero-content { 
-      max-width: 100%; /* El texto ocupa todo el ancho en móviles */
-      text-align: center; /* Centramos el texto en móviles */
-    }
-    .hero-tags { justify-content: center; } /* Centramos los tags */
-    .btn-group { justify-content: center; } /* Centramos los botones */
-  } 
- 
- .btn-group {
+  .hero-text h1 span {
+    color: #a29bfe;
+    filter: drop-shadow(0 0 20px rgba(162,155,254,0.4));
+  }
+
+  .hero-text p {
+    font-size: 1.05rem;
+    color: #b2bec3;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 32px;
+  }
+
+  .hero-tag {
+    background: rgba(108,92,231,0.12);
+    border: 1px solid rgba(108,92,231,0.3);
+    color: #a29bfe;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-group {
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
