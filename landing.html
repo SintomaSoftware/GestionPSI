@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="App para psicólogos: agenda, cobros, prepagas y autorizaciones. 30 días gratis. Android disponible.">
+<meta name="theme-color" content="#050505">
+<meta property="og:title" content="Gestión PSI - Tu consultorio, finalmente organizado">
+<meta property="og:description" content="Gestioná tu práctica desde el celular: turnos, finanzas, obras sociales y sesiones autorizadas.">
+<meta property="og:type" content="website">
 <title>Gestión PSI - Tu consultorio, finalmente organizado</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
@@ -13,6 +18,29 @@
     background: #050505;
     color: #dfe6e9;
     overflow-x: hidden;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    padding: 12px 20px;
+    background: #6c5ce7;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .skip-link:focus {
+    left: 16px;
+    top: 8px;
+  }
+
+  a:focus-visible {
+    outline: 2px solid #a29bfe;
+    outline-offset: 3px;
   }
 
   /* NAV */
@@ -55,32 +83,43 @@
 
   .nav-link:hover { opacity: 1; }
 
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 3vw, 24px);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-link--emphasis {
+    font-weight: 700;
+    opacity: 1;
+  }
+
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 120px 40px 80px;
+    padding: 120px clamp(20px, 5vw, 40px) 80px clamp(20px, 4vw, 32px);
     position: relative;
     overflow: hidden;
-    background-image: url('https://sintomasoftware.com.ar/assets/imagenes/hero_main.png');
+    background-image: url('https://sintomasoftware.com.ar/assets/imagenes/hero_main2.png');
     background-size: cover;
     background-position: center right;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(5,5,5,0.95) 40%, rgba(5,5,5,0.3) 100%);
-    z-index: 0;
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
+    max-width: 1100px;
+    margin-left: 0;
+    margin-right: auto;
+    width: 100%;
 }
 
-.hero-image { display: none; }
+  .hero-text .section-label {
+    text-shadow: 0 1px 14px rgba(0,0,0,0.55);
+  }
 
   .hero-text h1 {
     font-size: clamp(2rem, 4vw, 3.2rem);
@@ -88,6 +127,7 @@
     line-height: 1.15;
     color: white;
     margin-bottom: 20px;
+    text-shadow: 0 2px 28px rgba(0,0,0,0.5), 0 1px 10px rgba(0,0,0,0.45);
   }
 
   .hero-text h1 span {
@@ -97,9 +137,15 @@
 
   .hero-text p {
     font-size: 1.05rem;
-    color: #b2bec3;
+    color: #f0f3f5;
     line-height: 1.7;
     margin-bottom: 12px;
+    text-shadow: 0 1px 16px rgba(0,0,0,0.55);
+  }
+
+  .hero-text p.hero-lead {
+    max-width: 26rem;
+    margin-bottom: 16px;
   }
 
   .hero-tags {
@@ -110,14 +156,16 @@
   }
 
   .hero-tag {
-    background: rgba(108,92,231,0.12);
-    border: 1px solid rgba(108,92,231,0.3);
-    color: #a29bfe;
+    background: rgba(8,8,12,0.45);
+    border: 1px solid rgba(162,155,254,0.45);
+    color: #d6d2ff;
     padding: 5px 14px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.5px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.25);
   }
 
   .btn-group {
@@ -167,23 +215,78 @@
     background: rgba(162,155,254,0.05);
   }
 
-.store-badge-wrapper {
+  .hero-store-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+    margin-top: 10px;
+  }
+
+  /* Sin caja fija externa: el hover neón va sobre la imagen del badge (drop-shadow sigue la forma del PNG/SVG) */
+  .hero-store-badge {
+    flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 52px;
-    overflow: hidden;
-}
+    text-decoration: none;
+    border: none;
+    background: none;
+    padding: 0;
+    transition: transform 0.25s ease;
+  }
 
-.google-play-btn {
-    height: 78px;
-    margin: 0 -12px;
-}
+  .hero-store-badge img {
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    transition: filter 0.25s ease;
+  }
 
-.app-store-btn {
-    height: 52px;
-}
- 
+  .hero-store-img--play {
+    height: 87px;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  /* Un poco más bajo que Play: el SVG suele verse más grande a la misma altura por el arte */
+  .hero-store-img--appstore {
+    height: 70px;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .hero-store-badge:not(.hero-store-badge--muted):hover,
+  .hero-store-badge:not(.hero-store-badge--muted):focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .hero-store-badge:not(.hero-store-badge--muted):hover .hero-store-img--play,
+  .hero-store-badge:not(.hero-store-badge--muted):focus-visible .hero-store-img--play {
+    filter:
+      drop-shadow(0 0 1px rgba(162, 155, 254, 0.95))
+      drop-shadow(0 0 8px rgba(162, 155, 254, 0.75))
+      drop-shadow(0 0 18px rgba(162, 155, 254, 0.5))
+      drop-shadow(0 0 28px rgba(108, 92, 231, 0.45));
+  }
+
+  .hero-store-badge--muted {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  @media (max-width: 580px) {
+    .hero-store-badges {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
     /* FEATURES */
   .features {
     padding: 100px 40px;
@@ -544,13 +647,19 @@
 
   footer a:hover { opacity: 1; }
 
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card:hover,
+    .screenshot-frame:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: none;
+    }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     .hero { padding: 100px 20px 60px; }
-    .hero-content { grid-template-columns: 1fr; gap: 40px; }
-    .hero-image { order: -1; }
-    .hero-image img { max-width: 320px; }
     .features, .screenshots-inner, .pricing, .help-inner, .cta { padding-left: 20px; padding-right: 20px; }
     .cta-box { grid-template-columns: 1fr; padding: 40px 28px; }
     .cta-buttons { flex-direction: row; flex-wrap: wrap; }
@@ -560,58 +669,44 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
     <i class="fas fa-brain"></i>
     Gestión PSI
   </div>
-  <a href="#cta" class="nav-link">Comenzar gratis</a>
+  <div class="nav-links">
+    <a href="#features" class="nav-link">Funcionalidades</a>
+    <a href="#pricing" class="nav-link">Planes</a>
+    <a href="#cta" class="nav-link nav-link--emphasis">Comenzar gratis</a>
+  </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="main">
   <div class="hero-content">
     <div class="hero-text">
       <p class="section-label">Para psicólogos y psicoanalistas</p>
       <h1>Tu consultorio,<br><span>finalmente organizado.</span></h1>
-      <p>Todo lo que necesitás para gestionar tu práctica de forma simple y profesional, desde el celular.</p>
+      <p class="hero-lead">Todo lo que necesitás para gestionar tu práctica de forma simple y profesional,<br>desde el celular.</p>
       <div class="hero-tags">
         <span class="hero-tag">Agenda</span>
         <span class="hero-tag">Cobros</span>
         <span class="hero-tag">Prepagas</span>
         <span class="hero-tag">Autorizaciones</span>
       </div>
-<div class="btn-group" style="align-items:center; gap:12px; margin-top:8px;">
-  <a href="#cta" style="text-decoration:none;">
-    <div style="display:flex; align-items:center; gap:10px; background:#000; border:1.5px solid rgba(255,255,255,0.3); border-radius:10px; padding:8px 16px; height:52px; box-sizing:border-box;">
-      <svg width="20" height="20" viewBox="0 0 24 24"><path d="M3.18 23.76c.3.17.64.24.99.19l13.1-11.95L13.54 8 3.18 23.76z" fill="#EA4335"/><path d="M20.7 10.06L17.27 8.1l-3.73 3.9 3.73 3.9 3.46-1.97a1.97 1.97 0 000-3.87z" fill="#FBBC05"/><path d="M3.18.24A1.97 1.97 0 002 2v20c0 .72.4 1.35.99 1.69L13.54 12 3.18.24z" fill="#4285F4"/><path d="M4.17.05L13.54 12 17.27 8.1 4.98.19A1.97 1.97 0 004.17.05z" fill="#34A853"/></svg>
-      <div style="text-align:left; line-height:1.2;">
-        <div style="font-size:0.6rem; color:rgba(255,255,255,0.7); font-family:sans-serif;">DISPONIBLE EN</div>
-        <div style="font-size:1rem; font-weight:700; color:white; font-family:sans-serif;">Google Play</div>
+      <div class="hero-store-badges">
+        <a class="hero-store-badge" href="#cta" aria-label="Disponible en Google Play">
+          <img class="hero-store-img--play" src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play" decoding="async">
+        </a>
+        <span class="hero-store-badge hero-store-badge--muted">
+          <img class="hero-store-img--appstore" src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Próximamente en App Store" decoding="async">
+        </span>
       </div>
     </div>
-  </a>
-  <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
-    <div style="display:flex; align-items:center; gap:10px; background:#000; border:1.5px solid rgba(255,255,255,0.3); border-radius:10px; padding:8px 16px; height:52px; box-sizing:border-box; opacity:0.7;">
-      <svg width="20" height="20" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.3-155.5-127.4C46 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 70.1 0 128.4 46.4 172.5 46.4 42.8 0 109.6-49 192.5-49 30.9 0 109.6 2.6 166.3 96.3zm-154.2-172.7c31.5-38.2 54.3-91.5 54.3-144.7 0-7.7-.6-15.5-1.9-21.6-51.6 1.9-112.3 34.5-149.2 77.3-28.2 32.1-55.7 85.4-55.7 139.4 0 8.3 1.3 16.6 1.9 19.2 3.2.6 8.4 1.3 13.6 1.3 46.4 0 102.5-31.5 136.9-71z"/></svg>
-      <div style="text-align:left; line-height:1.2;">
-        <div style="font-size:0.6rem; color:rgba(255,255,255,0.7); font-family:sans-serif;">DESCARGAR EN</div>
-        <div style="font-size:1rem; font-weight:700; color:white; font-family:sans-serif;">App Store</div>
-      </div>
-    </div>
-    <span style="font-size:0.65rem; color:rgba(255,255,255,0.5); font-weight:600; letter-spacing:0.5px; text-transform:uppercase;">Próximamente</span>
-  </div>
-</div>
-    </div>
-    <div class="hero-image">
-      <img src="https://sintomasoftware.com.ar/assets/imagenes/hero.jpeg" 
-           alt="Gestión PSI App"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div style="display:none; width:280px; height:280px; align-items:center; justify-content:center; background: radial-gradient(circle, rgba(108,92,231,0.2) 0%, transparent 70%); border-radius:50%;">
-        <i class="fas fa-brain" style="font-size: 8rem; color: #a29bfe; filter: drop-shadow(0 0 30px rgba(162,155,254,0.6));"></i>
-      </div>
-    </div>
+    <!-- Imagen app (hero.jpeg) reservada para una sección inferior: https://sintomasoftware.com.ar/assets/imagenes/hero.jpeg -->
   </div>
 </section>
 
