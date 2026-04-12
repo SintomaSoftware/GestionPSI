@@ -96,7 +96,7 @@
     opacity: 1;
   }
 
-.hero {
+  .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -108,9 +108,28 @@
     background-position: center right;
 }
 
+/* --- ESTA ES LA ÚNICA ADICIÓN/MODIFICACIÓN: CAPA ASIMÉTRICA CON DEGRADADO --- */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* DEGRADADO LINEAL ASIMÉTRICO:
+       - to right: El degradado va de izquierda a derecha.
+       - rgba(0, 0, 0, 0.8) 0%: Comienza en el borde izquierdo muy oscuro (80% opaco).
+       - rgba(0, 0, 0, 0.3) 30%: Se aclara gradualmente hasta el centro-izquierdo (30% opaco).
+       - rgba(0, 0, 0, 0.3) 100%: Se mantiene suave hasta el borde derecho.
+       Ajusta el '0.8' (izquierda) o el '0.3' (derecha) para más o menos suavizado.
+       Ajusta el '30%' para mover el punto donde se aclara. */
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 30%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 0; /* Capa intermedia */
+}
+
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Eleva el contenido sobre la capa ::after */
     max-width: 1100px;
     margin-left: 0;
     margin-right: auto;
