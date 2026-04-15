@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Ayuda - Gestión PSI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Mantenemos tu base estética */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #050505; color: #dfe6e9; }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5,5,5,0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(162,155,254,0.1);
+        }
+
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; text-decoration: none; }
+        .nav-logo i { color: #a29bfe; }
+
+        .container { max-width: 1100px; margin: 140px auto 60px; padding: 0 20px; }
+        
+        .header { text-align: center; margin-bottom: 60px; }
+        .header h1 { font-size: 2.5rem; color: white; }
+        .header h1 span { color: #a29bfe; }
+
+        /* GRILLA DE TARJETAS DE AYUDA */
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: linear-gradient(145deg, #1e2021, #161718);
+            border: 1px solid rgba(162,155,254,0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .category-card:hover {
+            border-color: #a29bfe;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(162,155,254,0.1);
+        }
+
+        .icon-box {
+            width: 50px; height: 50px;
+            background: rgba(108,92,231,0.15);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .icon-box i { color: #a29bfe; font-size: 1.5rem; }
+
+        .category-card h3 { color: white; font-size: 1.2rem; }
+        .category-card p { color: #b2bec3; font-size: 0.9rem; line-height: 1.5; }
+        
+        .link-text {
+            color: #a29bfe; font-weight: 700; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-top: auto; display: flex; align-items: center; gap: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo"><i class="fas fa-brain"></i> Gestión PSI</a>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <h1>Centro de <span>Capacitación</span></h1>
+            <p>Seleccioná el módulo sobre el cual tenés dudas.</p>
+        </header>
+
+        <div class="help-grid">
+            <a href="ayuda-carga.html" class="category-card">
+                <div class="icon-box"><i class="fas fa-plus-circle"></i></div>
+                <h3>Cargar Sesión</h3>
+                <p>Aprendé a registrar una nueva sesión, configurar copagos y guardarla en el historial del paciente.</p>
+                <span class="link-text">Ver tutorial <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="ayuda-agenda.html" class="category-card">
+                <div class="icon-box"><i class="fas fa-calendar-alt"></i></div>
+                <h3>Agenda y Turnos</h3>
+                <p>Cómo organizar tu semana, configurar recurrencias y evitar superposición de horarios.</p>
+                <span class="link-text">Ver tutorial <i class="fas fa-arrow-right"></i></span>
+            </a>
+
+            <a href="ayuda-finanzas.html" class="category-card">
+                <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
+                <h3>Control Financiero</h3>
+                <p>Visualizá tus ingresos mensuales y gestioná los pagos pendientes de prepagas y particulares.</p>
+                <span class="link-text">Ver tutorial <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
