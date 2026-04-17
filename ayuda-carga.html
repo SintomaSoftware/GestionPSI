@@ -6,139 +6,107 @@
     <title>Ayuda y Tutoriales - Gestión PSI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* Reutilizamos tu base estética */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background: #050505; /* Fondo negro como pediste */
+            background: #050505;
             color: #dfe6e9;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* BANNER SUPERIOR (Copiado de tu landing para consistencia) */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(5,5,5,0.85);
-            backdrop-filter: blur(12px);
+            position: fixed; top: 0; width: 100%; z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5,5,5,0.85); backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(162,155,254,0.1);
         }
 
         .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: white;
-            text-decoration: none;
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; color: white; text-decoration: none;
         }
 
         .nav-logo i {
-            color: #a29bfe;
-            font-size: 1.4rem;
+            color: #a29bfe; font-size: 1.4rem;
             filter: drop-shadow(0 0 8px rgba(162,155,254,0.6));
         }
 
-        /* CONTENEDOR PRINCIPAL */
         .tutorial-container {
-            max-width: 1400px;
-            margin: 120px auto 60px; /* Margen para no quedar debajo del nav */
+            max-width: 1200px;
+            margin: 120px auto 60px;
             padding: 0 20px;
         }
 
-        .section-header {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .section-header h1 {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 10px;
-        }
-
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h1 { font-size: 2.5rem; color: white; }
         .section-header h1 span { color: #a29bfe; }
 
-        /* LA GRILLA: FOTO IZQUIERDA | VIDEO DERECHA */
+        /* GRILLA PRINCIPAL */
         .tutorial-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-    max-width: 1000px; /* Reducimos el ancho total para que los verticales luzcan mejor */
-    margin: 0 auto;
-}
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
-        /* Espacio para tu Foto */
+        /* ESTILO CELULAR PARA FOTO */
         .photo-space {
             width: 100%;
-            border-radius: 16px;
+            border-radius: 30px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: #111; /* Fondo por si la foto tarda en cargar */
+            border: 2px solid rgba(162,155,254,0.2);
+            background: #111;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .photo-space img {
+        .photo-space img { width: 100%; height: auto; display: block; }
+
+        /* CONTENEDOR DEL VIDEO (EL "CELULAR" NEÓN) */
+        .video-wrapper {
             width: 100%;
-            height: auto;
-            display: block;
+            max-width: 320px; /* Tamaño equilibrado con la foto */
+            margin: 0 auto;
         }
 
-        /* Espacio para el Video (Mantiene proporción 9:16) */
-        .video-space {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; /* Obligamos al video a ocupar todo el ancho */
-    height: 100%; /* Obligamos al video a ocupar todo el alto */
-    border: none;
-    object-fit: cover; /* Este comando es clave para que rellene el espacio */
-}
-
-        .video-spaceiframe {
-    position: absolute;
-    /* Usamos top/left y transform para centrar el video y "estirarlo" un poquito 
-       fuera de los bordes negros de YouTube */
-    top: 50%;
-    left: 50%;
-    width: 100%; 
-    height: 100%;
-    transform: translate(-50%, -50%) scale(1.02); /* El scale(1.02) elimina esa línea negra mínima */
-    border: none;
-}
-
-        .video-caption {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #a29bfe;
-            font-weight: 600;
+        .video-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.77%; /* Proporción 9:16 exacta */
+            height: 0;
+            background: #000;
+            border-radius: 35px;
+            border: 2px solid rgba(162,155,254,0.4);
+            box-shadow: 0 0 25px rgba(162,155,254,0.2);
+            overflow: hidden;
         }
 
-        /* FOOTER SIMPLE */
+        .video-frame iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-info { margin-top: 20px; text-align: left; }
+        .video-caption { color: #a29bfe; font-weight: 600; margin-bottom: 8px; display: block; }
+        .video-description { font-size: 0.9rem; color: #b2bec3; line-height: 1.5; }
+
         footer {
-            text-align: center;
-            padding: 40px;
+            text-align: center; padding: 40px;
             border-top: 1px solid rgba(255,255,255,0.06);
             margin-top: 60px;
         }
-
         footer p { font-size: 0.8rem; color: #636e72; }
 
-        /* RESPONSIVE: En celulares se pone uno abajo del otro */
+        /* RESPONSIVE */
         @media (max-width: 900px) {
-            .tutorial-grid {
-                grid-template-columns: 1fr;
-            }
-            .section-header h1 { font-size: 1.8rem; }
+            .tutorial-grid { grid-template-columns: 1fr; gap: 40px; }
+            .video-wrapper { max-width: 350px; }
+            .section-header h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -146,15 +114,14 @@
 
     <nav>
         <a href="index.html" class="nav-logo">
-            <i class="fas fa-brain"></i>
-            Gestión PSI
+            <i class="fas fa-brain"></i> Gestión PSI
         </a>
     </nav>
 
     <main class="tutorial-container">
         <header class="section-header">
             <h1>Cargar <span>Sesión</span></h1>
-            <p>Aprendé cómo ingresar cada sesión.</p>
+            <p>Aprendé cómo ingresar cada sesión paso a paso.</p>
         </header>
 
         <section class="tutorial-grid">
@@ -162,20 +129,21 @@
                 <img src="https://sintomasoftware.com.ar/assets/cargarsesion.png" alt="Instructivo vista de la App">
             </div>
 
-            <div>
-                <div class="video-space">
+            <div class="video-wrapper">
+                <div class="video-frame">
                     <iframe 
-                        src="https://www.youtube.com/embed/gKFroz7RCXA?rel=0&controls=0&showinfo=0"
+                        src="https://www.youtube.com/embed/gKFroz7RCXA?rel=0&modestbranding=1" 
                         title="Tutorial Gestión PSI" 
-                        frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
                 </div>
-                <p class="video-caption"><i class="fab fa-youtube"></i> Video Tutorial: Cómo completar esta vista</p>
-                <p style="margin-top: 10px; font-size: 0.85rem; color: #b2bec3; line-height: 1.5;">
-                    En este video te explicamos paso a paso cómo cargar los datos de esta sección para mantener tu consultorio organizado.
-                </p>
+                <div class="video-info">
+                    <span class="video-caption"><i class="fab fa-youtube"></i> Video Tutorial</span>
+                    <p class="video-description">
+                        En este video te explicamos cómo completar esta sección para mantener tu consultorio organizado y tus finanzas al día.
+                    </p>
+                </div>
             </div>
         </section>
     </main>
