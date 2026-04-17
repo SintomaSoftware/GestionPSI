@@ -95,16 +95,13 @@
 
         /* Espacio para el Video (Mantiene proporción 9:16) */
         .video-space {
-    position: relative;
-    width: 100%;
-    max-width: 280px; /* Un poco más angosto ayuda a que se vea más estilizado */
-    height: 560px;    /* FORZAMOS la altura fija en lugar de usar padding-bottom */
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 35px;
-    border: 2px solid rgba(162, 155, 254, 0.4);
-    box-shadow: 0 0 25px rgba(162, 155, 254, 0.2);
-    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Obligamos al video a ocupar todo el ancho */
+    height: 100%; /* Obligamos al video a ocupar todo el alto */
+    border: none;
+    object-fit: cover; /* Este comando es clave para que rellene el espacio */
 }
 
         .video-spaceiframe {
