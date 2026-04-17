@@ -97,12 +97,18 @@
         .video-space {
     position: relative;
     width: 100%;
-    max-width: 400px; /* Limitamos el ancho para que no se estire de más en PC */
-    margin: 0 auto;   /* Lo centramos en su columna */
-    padding-bottom: 177.77%; /* Esta es la proporción mágica para 9:16 (vertical) */
+    /* 1. AJUSTE DE TAMAÑO: Bajalo a 320px o 350px para que calce con la imagen */
+    max-width: 320px; 
+    margin: 0 auto;
+    padding-bottom: 177.77%; /* Proporción 9:16 */
     height: 0;
     overflow: hidden;
-    border-radius: 20px;
+    
+    /* 2. ESTILO NEÓN: Borde y sombra */
+    border-radius: 30px; /* Bordes redondeados como un celular moderno */
+    border: 2px solid rgba(162, 155, 254, 0.4); /* Tu color violeta con transparencia */
+    box-shadow: 0 0 20px rgba(162, 155, 254, 0.2), inset 0 0 10px rgba(0,0,0,0.5);
+    background: #000;
 }
 
         .video-space iframe {
