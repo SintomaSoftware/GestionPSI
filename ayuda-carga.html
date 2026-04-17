@@ -70,15 +70,13 @@
 
         /* LA GRILLA: FOTO IZQUIERDA | VIDEO DERECHA */
         .tutorial-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-            gap: 20px;
-            align-items: start;
-            background: rgba(255,255,255,0.02);
-            padding: 15px;
-            border-radius: 24px;
-            border: 1px solid rgba(162,155,254,0.1);
-        }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    max-width: 1000px; /* Reducimos el ancho total para que los verticales luzcan mejor */
+    margin: 0 auto;
+}
 
         /* Espacio para tu Foto */
         .photo-space {
@@ -95,24 +93,26 @@
             display: block;
         }
 
-        /* Espacio para el Video (Mantiene proporción 16:9) */
+        /* Espacio para el Video (Mantiene proporción 9:16) */
         .video-space {
-            position: relative;
-            padding-bottom: 56.25%; /* Proporción 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 16px;
-            border: 1px solid rgba(162,155,254,0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Limitamos el ancho para que no se estire de más en PC */
+    margin: 0 auto;   /* Lo centramos en su columna */
+    padding-bottom: 177.77%; /* Esta es la proporción mágica para 9:16 (vertical) */
+    height: 0;
+    overflow: hidden;
+    border-radius: 20px;
+}
 
         .video-space iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
 
         .video-caption {
             margin-top: 15px;
