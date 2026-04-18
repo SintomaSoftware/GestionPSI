@@ -290,40 +290,44 @@
     </footer>
 
     <script>
-        document.getElementById('ayudaForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const btn = e.target.querySelector('.btn-submit');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Enviando...';
-            btn.disabled = true;
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsNI91AKtzNHLfasbtbmdGf4e-QGTM8ExUo-G5c6okhTvXIKVKkQyygY5Qv_e2VOFWBA/exec';
 
-            // Recopilamos los datos del formulario
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                // Por ahora ignoramos el archivo para que no falle el envío de texto
-                if(key !== 'archivo') data[key] = value;
-            });
+  document.getElementById('ayudaForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-            // Llamada al Backend (Apps Script)
-            google.script.run
-                .withSuccessHandler(function() {
-                    alert('¡Consulta enviada con éxito! Te responderemos pronto.');
-                    document.getElementById('ayudaForm').reset();
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                })
-                .withFailureHandler(function(err) {
-                    alert('Error al enviar: ' + err.message);
-                    btn.innerText = originalText;
-                    btn.disabled = false;
-                })
-                .procesarFormularioAyuda(data); 
-        });
-        
-    </script>
+    const btn = e.target.querySelector('.btn-submit');
+    const originalText = btn.innerText;
+    btn.innerText = 'Enviando...';
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => {
+      if (key !== 'archivo') data[key] = value;
+    });
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(response => {
+      if (response.status === 'success') {
+        alert('¡Consulta enviada con éxito! Te responderemos pronto.');
+        document.getElementById('ayudaForm').reset();
+      } else {
+        alert('Error al enviar: ' + response.mensaje);
+      }
+      btn.innerText = originalText;
+      btn.disabled = false;
+    })
+    .catch(() => {
+      alert('Error de conexión. Por favor intentá nuevamente.');
+      btn.innerText = originalText;
+      btn.disabled = false;
+    });
+  });
+</script>
 
     
 </body>
