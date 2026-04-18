@@ -240,24 +240,24 @@
             <a href="faq.html" class="faq-btn">Ir a F.A.Q. <i class="fas fa-external-link-alt"></i></a>
         </section>
 
-        <section class="support-section">
+<section class="support-section">
             <div class="support-header">
                 <h2>Reportar un problema</h2>
                 <p>Envianos tu consulta y te responderemos a la brevedad por mail.</p>
             </div>
 
-            <form class="contact-form" action="#" method="POST" enctype="multipart/form-data">
+            <form id="ayudaForm" class="contact-form">
                 <div class="form-group">
                     <label>Tu Nombre</label>
-                    <input type="text" placeholder="Ej: Dr. García" required>
+                    <input type="text" name="nombre" placeholder="Ej: Dr. García" required>
                 </div>
                 <div class="form-group">
                     <label>Tu Email</label>
-                    <input type="email" placeholder="nombre@ejemplo.com" required>
+                    <input type="email" name="email" placeholder="nombre@ejemplo.com" required>
                 </div>
                 <div class="form-group full-width">
                     <label>¿En qué podemos ayudarte?</label>
-                    <select required>
+                    <select name="motivo" required>
                         <option value="">Seleccionar motivo...</option>
                         <option value="tecnico">Error Técnico / Problema en la App</option>
                         <option value="comercial">Duda sobre mi Suscripción</option>
@@ -267,12 +267,12 @@
                 </div>
                 <div class="form-group full-width">
                     <label>Mensaje detallado</label>
-                    <textarea rows="5" placeholder="Contanos qué pasó o qué duda tenés..." required></textarea>
+                    <textarea name="mensaje" rows="5" placeholder="Contanos qué pasó o qué duda tenés..." required></textarea>
                 </div>
                 <div class="form-group full-width">
                     <label>Adjuntar captura (opcional)</label>
                     <div class="file-upload">
-                        <input type="file" id="file" hidden>
+                        <input type="file" id="file" name="archivo" hidden>
                         <label for="file" style="cursor: pointer;">
                             <i class="fas fa-cloud-upload-alt" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
                             Hacé clic para subir una imagen o captura de pantalla
@@ -282,11 +282,49 @@
                 <button type="submit" class="btn-submit">Enviar consulta por mail</button>
             </form>
         </section>
+        
     </div>
 
     <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.06);">
         <p style="font-size: 0.8rem; color: #636e72;">© 2026 Gestión PSI · Sintoma Software</p>
     </footer>
 
+    <script>
+        document.getElementById('ayudaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('.btn-submit');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Enviando...';
+            btn.disabled = true;
+
+            // Recopilamos los datos del formulario
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                // Por ahora ignoramos el archivo para que no falle el envío de texto
+                if(key !== 'archivo') data[key] = value;
+            });
+
+            // Llamada al Backend (Apps Script)
+            google.script.run
+                .withSuccessHandler(function() {
+                    alert('¡Consulta enviada con éxito! Te responderemos pronto.');
+                    document.getElementById('ayudaForm').reset();
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                })
+                .withFailureHandler(function(err) {
+                    alert('Error al enviar: ' + err.message);
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                })
+                .procesarFormularioAyuda(data); 
+        });
+        
+    </script>
+
+    
 </body>
 </html>
