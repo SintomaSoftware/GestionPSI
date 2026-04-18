@@ -279,7 +279,7 @@
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="btn-submit">Enviar consulta por mail</button>
+                <button type="submit" class="btn-submit">Enviar Consulta</button>
             </form>
         </section>
         
@@ -291,12 +291,22 @@
 
     <script>
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsNI91AKtzNHLfasbtbmdGf4e-QGTM8ExUo-G5c6okhTvXIKVKkQyygY5Qv_e2VOFWBA/exec';
+  const MAX_BYTES = 2 * 1024 * 1024; // 2MB
 
   document.getElementById('ayudaForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const btn = e.target.querySelector('.btn-submit');
     const originalText = btn.innerText;
+    const archivoInput = document.getElementById('file');
+    const archivo = archivoInput.files[0];
+
+    // Validación de tamaño
+    if (archivo && archivo.size > MAX_BYTES) {
+      alert('El archivo supera el límite de 2MB. Por favor seleccioná una imagen más liviana.');
+      return;
+    }
+
     btn.innerText = 'Enviando...';
     btn.disabled = true;
 
@@ -306,6 +316,25 @@
       if (key !== 'archivo') data[key] = value;
     });
 
+    // Si hay archivo lo convertimos a Base64 y enviamos, sino enviamos directo
+    if (archivo) {
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        const base64 = ev.target.result.split(',')[1];
+        data.archivo = {
+          nombre:    archivo.name,
+          tipo:      archivo.type,
+          contenido: base64
+        };
+        enviarFormulario(data, btn, originalText);
+      };
+      reader.readAsDataURL(archivo);
+    } else {
+      enviarFormulario(data, btn, originalText);
+    }
+  });
+
+  function enviarFormulario(data, btn, originalText) {
     fetch(SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify(data)
@@ -326,9 +355,8 @@
       btn.innerText = originalText;
       btn.disabled = false;
     });
-  });
+  }
 </script>
-
     
 </body>
 </html>
