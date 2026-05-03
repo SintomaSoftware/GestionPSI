@@ -56,6 +56,25 @@
         }
 
         document.getElementById('appFrame').src = iframeSrc;
+
+        // ============================================================
+        // Puente para login con Google nativo desde Android (WebView)
+        // Android llama a esta función con evaluateJavascript.
+        // Ejecuta en el contexto de PROD.html (no del iframe), por eso
+        // reenvía el email al iframe del frontend usando postMessage.
+        // ============================================================
+        window.loginGoogleDesdeAndroid = function(email) {
+            console.log("loginGoogleDesdeAndroid recibido:", email);
+            const iframe = document.getElementById('appFrame');
+            if (!iframe || !iframe.contentWindow) {
+                console.log("Iframe no disponible todavia");
+                return;
+            }
+            iframe.contentWindow.postMessage(
+                { tipo: 'loginGoogleAndroid', email: email },
+                '*'
+            );
+        };
     </script>
 </body>
 </html>
