@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda Finanzas - Gestión PSI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #050505;
+            color: #dfe6e9;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5,5,5,0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(162,155,254,0.1);
+        }
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; color: white; text-decoration: none;
+        }
+
+        .nav-logo i {
+            color: #a29bfe; font-size: 1.4rem;
+            filter: drop-shadow(0 0 8px rgba(162,155,254,0.6));
+        }
+
+        .tutorial-container {
+            max-width: 1400px; /* Ampliado un poco para que entren cómodas las 4 columnas */
+            margin: 60px auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h1 { font-size: 2.5rem; color: white; }
+        .section-header h1 span { color: #a29bfe; }
+
+        /* GRILLA DE 4 COLUMNAS INVISIBLES */
+        .finanzas-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+            gap: 30px; /* Espaciado equilibrado entre columnas */
+            align-items: start;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* CONTENEDOR INDIVIDUAL DE CADA VIDEO */
+        .video-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espacio entre el texto de arriba y el video */
+            width: 100%;
+        }
+
+        /* TEXTO DESCRIPTIVO ARRIBA */
+        .video-info-top {
+            text-align: left;
+            min-height: 85px; /* Altura mínima para que los videos queden alineados simétricamente si un texto es más largo */
+        }
+        
+        .video-caption { color: #a29bfe; font-weight: 600; margin-bottom: 6px; display: block; font-size: 1rem; }
+        .video-description { font-size: 0.85rem; color: #b2bec3; line-height: 1.5; }
+
+        /* MARCO EN FORMATO VERTICAL */
+        .video-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.77%; /* Proporción 9:16 exacta */
+            height: 0;
+            background: #000;
+            border-radius: 25px; /* Ajustado levemente para columnas más estilizadas */
+            border: 2px solid rgba(162,155,254,0.4);
+            box-shadow: 0 0 20px rgba(162,155,254,0.15);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Efecto sutil al pasar el mouse por el video */
+        .video-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(162,155,254,0.3);
+            border-color: rgba(162,155,254,0.6);
+        }
+
+        .video-frame iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        footer {
+            text-align: center; padding: 40px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 80px;
+        }
+        footer p { font-size: 0.8rem; color: #636e72; }
+
+        /* RESPONSIVE: ADAPTACIÓN SEGÚN PANTALLAS */
+        @media (max-width: 1100px) {
+            .finanzas-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; } /* Se divide en 2x2 en pantallas medianas */
+        }
+        
+        @media (max-width: 650px) {
+            .finanzas-grid { grid-template-columns: 1fr; gap: 40px; } /* Todo en vertical en celulares */
+            .video-column { max-width: 320px; margin: 0 auto; }
+            .video-info-top { min-height: auto; } /* Sin altura mínima en celular */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="landing.html" class="nav-logo">
+            <i class="fas fa-brain"></i> Gestión PSI
+        </a>
+    </nav>
+
+    <main class="tutorial-container">
+        <header class="section-header">
+            <h1>Gestión <span>Financiera</span></h1>
+            <p>Monitoreá la economía de tu consultorio de manera eficiente.</p>
+        </header>
+
+        <section class="finanzas-grid">
+            
+            <div class="video-column">
+                <div class="video-info-top">
+                    <span class="video-caption"><i class="fas fa-wallet"></i> Resumen General</span>
+                    <p class="video-description">
+                        Introducción al flujo de caja y cómo interpretar el panel de control financiero.
+                    </p>
+                </div>
+                <div class="video-frame">
+                    <iframe 
+                        src="https://www.youtube.com/embed/enB9P4u81DA?rel=0&modestbranding=1" 
+                        title="Tutorial Deudores" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="video-column">
+                <div class="video-info-top">
+                    <span class="video-caption"><i class="fas fa-file-invoice-dollar"></i> Cargar Honorarios</span>
+                    <p class="video-description">
+                        Cómo registrar correctamente los ingresos de sesiones particulares y obras sociales.
+                    </p>
+                </div>
+                <div class="video-frame">
+                    <iframe 
+                        src="https://www.youtube.com/embed/TU_ID_VIDEO_2?rel=0&modestbranding=1" 
+                        title="Tutorial Finanzas 2" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="video-column">
+                <div class="video-info-top">
+                    <span class="video-caption"><i class="fas fa-receipt"></i> Control de Gastos</span>
+                    <p class="video-description">
+                        Registrá tus costos fijos y variables del consultorio para calcular tu ganancia neta.
+                    </p>
+                </div>
+                <div class="video-frame">
+                    <iframe 
+                        src="https://www.youtube.com/embed/TU_ID_VIDEO_3?rel=0&modestbranding=1" 
+                        title="Tutorial Finanzas 3" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="video-column">
+                <div class="video-info-top">
+                    <span class="video-caption"><i class="fas fa-chart-line"></i> Reportes y Cierre</span>
+                    <p class="video-description">
+                        Exportación de datos de facturación y análisis de rendimiento mensual del negocio.
+                    </p>
+                </div>
+                <div class="video-frame">
+                    <iframe 
+                        src="https://www.youtube.com/embed/TU_ID_VIDEO_4?rel=0&modestbranding=1" 
+                        title="Tutorial Finanzas 4" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Gestión PSI · Sintoma Software</p>
+    </footer>
+
+</body>
+</html>
