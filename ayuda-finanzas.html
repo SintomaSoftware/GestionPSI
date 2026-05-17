@@ -55,11 +55,13 @@
 
         /* CONTENEDOR INDIVIDUAL DE CADA VIDEO */
         .video-column {
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* Espacio entre el texto de arriba y el video */
-            width: 100%;
-        }
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 320px; /* <--- ESTA ES LA LÍNEA QUE AGREGAMOS */
+        margin: 0 auto;   /* <--- Y ESTA PARA QUE CADA COLUMNA SE CENTRE */
+    }
 
         /* TEXTO DESCRIPTIVO ARRIBA */
         .video-info-top {
