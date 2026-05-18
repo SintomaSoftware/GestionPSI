@@ -78,6 +78,7 @@
     color: #ffffff; 
     text-decoration: none;
     font-size: 1.05rem; 
+    font-weight: 700; /* <--- AGREGADO: Letra más gordita (Bold) */ 
     opacity: 0.85;
     transition: opacity 0.2s;
   }
@@ -329,7 +330,7 @@
   .section-title {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 800;
-    color: white;
+    color: #a29bfe; /* <--- COLOR LAVANDA/VIOLETA NEÓN APLICADO */
     margin-bottom: 16px;
     text-shadow: 0 0 15px rgba(162, 155, 254, 0.2); /* Opcional: un sutil reflejo neón */
   }
@@ -729,30 +730,22 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
 
-  /* --- AQUÍ ESTÁ LA CLAVE DEL RESPLANDOR CLONADO --- */
+/* --- REGLAS DE ICONOS CLONADAS DIRECTAMENTE DE TU AYUDA --- */
   .tutorial-main-icon {
-    width: 60px; /* Tamaño unificado como en ayuda.html */
-    height: 60px; /* Tamaño unificado como en ayuda.html */
-    
-    /* El fondo es más sólido para dar contraste, y el violeta es más intenso */
-    background: rgba(162, 155, 254, 0.1); 
-    
+    width: 54px;
+    height: 54px;
+    background: rgba(108, 92, 231, 0.12);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
-    
-    /* ESTA LÍNEA LOGRA EL EFECTO NEÓN CLONADO */
-    box-shadow: 0 0 15px rgba(162, 155, 254, 0.3); 
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.2); /* Resplandor exacto del sistema */
   }
 
   .tutorial-main-icon i {
     color: #a29bfe;
-    font-size: 1.5rem; /* Tamaño de dibujo corregido, más grande */
-    
-    /* Resplandor sutil también en el icono de dibujo */
-    filter: drop-shadow(0 0 5px rgba(162, 155, 254, 0.5));
+    font-size: 1.25rem; /* Escala real del dibujo */
   }
 
   .tutorial-main-card h3 {
@@ -905,7 +898,7 @@
     </div>
 
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-plus"></i></div>
+      <div class="tutorial-main-icon"><i class="fas fa-plus-circle"></i></div>
       <h3>Cargar Sesión</h3>
       <p>Registro de sesiones y honorarios.</p>
     </div>
@@ -929,7 +922,7 @@
     </div>
 
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-hospital"></i></div>
+      <div class="tutorial-main-icon"><i class="fas fa-building"></i></div>
       <h3>Prepagas</h3>
       <p>Configurá las prepagas con las que trabajás.</p>
     </div>
