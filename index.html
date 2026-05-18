@@ -698,18 +698,17 @@
     footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
   }
 
- /* --- SECCIÓN NUEVA: VIDEO TUTORIALES (CLON AYUDA) --- */
-  /* --- SECCIÓN NUEVA: VIDEO TUTORIALES (CLON EXACTO DE AYUDA) --- */
+ /* --- SECCIÓN NUEVA: VIDEO TUTORIALES (CLON REAL AYUDA) --- */
   .tutoriales-section {
-    padding: 50px 40px; 
-    max-width: 1350px;  
+    padding: 50px 40px; /* Acoplado a tu premisa compacta */
+    max-width: 1350px;  /* Sincronizado con el nuevo ancho extendido */
     margin: 0 auto;
   }
 
   .tutoriales-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px; /* Tu gap original de ayuda.html */
     margin-top: 40px;
   }
 
@@ -717,42 +716,34 @@
     background: linear-gradient(145deg, #1e2021, #161718);
     border: 1px solid rgba(162, 155, 254, 0.15);
     border-radius: 20px;
-    padding: 35px 28px;
-    text-align: center;
-    text-decoration: none; 
+    padding: 30px; /* Tu padding original de ayuda.html */
+    text-decoration: none;
     color: inherit;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
   .tutorial-main-card:hover {
-    border-color: rgba(162, 155, 254, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border-color: rgba(162, 155, 254, 0.6);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 15px rgba(162, 155, 254, 0.1);
   }
 
-/* --- REGLAS DE ICONOS CLONADAS DIRECTAMENTE DE TU AYUDA --- */
-  .tutorial-main-icon {
-    width: 54px;
-    height: 54px;
-    background: rgba(108, 92, 231, 0.12);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    box-shadow: 0 0 20px rgba(108, 92, 231, 0.2); /* Resplandor exacto del sistema */
-  }
-
-  .tutorial-main-icon i {
+  /* ESTILO EXACTO DEL ICONO (Sin círculos contenedores artificiales) */
+  .tutorial-main-card i {
+    font-size: 2rem; /* Tu tamaño original de ayuda.html */
     color: #a29bfe;
-    font-size: 1.25rem; /* Escala real del dibujo */
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(162, 155, 254, 0.5)); /* Tu resplandor real */
   }
 
   .tutorial-main-card h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
     color: white;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
   }
 
   .tutorial-main-card p {
@@ -761,16 +752,12 @@
     line-height: 1.6;
   }
 
-  @media (max-width: 992px) {
-    .tutoriales-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media (max-width: 900px) {
+    .tutoriales-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  @media (max-width: 650px) {
-    .tutoriales-grid {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 600px) {
+    .tutoriales-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
   }
 </style>
 </head>
@@ -892,37 +879,37 @@
   <div class="tutoriales-grid">
     
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-rocket"></i></div>
+      <i class="fas fa-rocket"></i>
       <h3>Primeros Pasos</h3>
       <p>Configuración inicial y conocimiento general de la aplicación.</p>
     </div>
 
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-plus-circle"></i></div>
+      <i class="fas fa-plus-circle"></i>
       <h3>Cargar Sesión</h3>
       <p>Registro de sesiones y honorarios.</p>
     </div>
 
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-calendar-alt"></i></div>
+      <i class="fas fa-calendar-alt"></i>
       <h3>Agenda y Turnos</h3>
       <p>Cómo gestionar los turnos y sacarle provecho a la agenda.</p>
     </div>
 
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-dollar-sign"></i></div>
+      <i class="fas fa-dollar-sign"></i>
       <h3>Control Financiero</h3>
       <p>Resúmenes de tus finanzas y seguimiento de morosos.</p>
     </div>
 
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-users"></i></div>
+      <i class="fas fa-users"></i>
       <h3>Pacientes</h3>
       <p>Altas, autorizaciones y fichas personales.</p>
     </div>
 
     <div class="tutorial-main-card">
-      <div class="tutorial-main-icon"><i class="fas fa-building"></i></div>
+      <i class="fas fa-building"></i>
       <h3>Prepagas</h3>
       <p>Configurá las prepagas con las que trabajás.</p>
     </div>
