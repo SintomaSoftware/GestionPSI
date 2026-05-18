@@ -325,8 +325,9 @@
   .section-title {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 800;
-    color: white;
+    color: #a29bfe; /* <--- CAMBIADO A NUESTRO COLOR DESTACADO */
     margin-bottom: 16px;
+    text-shadow: 0 0 15px rgba(162, 155, 254, 0.2); /* Opcional: un sutil reflejo neón */
   }
 
   .section-subtitle {
@@ -691,6 +692,79 @@
     .cta-buttons { flex-direction: row; flex-wrap: wrap; }
     footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
   }
+
+ /* --- SECCIÓN NUEVA: VIDEO TUTORIALES (CLON AYUDA) --- */
+  .tutoriales-section {
+    padding: 50px 40px; /* Acoplado a tu nueva premisa de espaciados compactos */
+    max-width: 1350px;  /* Sincronizado con el nuevo ancho extendido */
+    margin: 0 auto;
+  }
+
+  .tutoriales-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas como en la captura */
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .tutorial-main-card {
+    background: linear-gradient(145deg, #1e2021, #161718);
+    border: 1px solid rgba(162, 155, 254, 0.15);
+    border-radius: 20px;
+    padding: 35px 28px;
+    text-align: center;
+    text-decoration: none; /* Por si después los convertís en enlaces directos */
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+
+  .tutorial-main-card:hover {
+    border-color: rgba(162, 155, 254, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .tutorial-main-icon {
+    width: 54px;
+    height: 54px;
+    background: rgba(108, 92, 231, 0.12);
+    border-radius: 50%; /* Iconos circulares idénticos al clon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+
+  .tutorial-main-icon i {
+    color: #a29bfe;
+    font-size: 1.3rem;
+  }
+
+  .tutorial-main-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .tutorial-main-card p {
+    font-size: 0.85rem;
+    color: #b2bec3;
+    line-height: 1.6;
+  }
+
+  /* Adaptabilidad para el clon de tutoriales */
+  @media (max-width: 992px) {
+    .tutoriales-grid {
+      grid-template-columns: repeat(2, 1fr); /* Pasa a 2 columnas en tablet */
+    }
+  }
+
+  @media (max-width: 650px) {
+    .tutoriales-grid {
+      grid-template-columns: 1fr; /* Uno abajo del otro en celu */
+    }
+  }
 </style>
 </head>
 <body>
@@ -802,6 +876,53 @@
   </div>
 </section>
 
+<!--- Video Tutoriales --->
+<section class="tutoriales-section" id="tutoriales">
+  <p class="section-label">Recursos</p>
+  <h2 class="section-title">Video Tutoriales</h2>
+  <p class="section-subtitle">Guías rápidas en video para dominar cada herramienta del sistema.</p>
+
+  <div class="tutoriales-grid">
+    
+    <div class="tutorial-main-card">
+      <div class="tutorial-main-icon"><i class="fas fa-rocket"></i></div>
+      <h3>Primeros Pasos</h3>
+      <p>Configuración inicial y conocimiento general de la aplicación.</p>
+    </div>
+
+    <div class="tutorial-main-card">
+      <div class="tutorial-main-icon"><i class="fas fa-plus"></i></div>
+      <h3>Cargar Sesión</h3>
+      <p>Registro de sesiones y honorarios.</p>
+    </div>
+
+    <div class="tutorial-main-card">
+      <div class="tutorial-main-icon"><i class="fas fa-calendar-alt"></i></div>
+      <h3>Agenda y Turnos</h3>
+      <p>Cómo gestionar los turnos y sacarle provecho a la agenda.</p>
+    </div>
+
+    <div class="tutorial-main-card">
+      <div class="tutorial-main-icon"><i class="fas fa-dollar-sign"></i></div>
+      <h3>Control Financiero</h3>
+      <p>Resúmenes de tus finanzas y seguimiento de morosos.</p>
+    </div>
+
+    <div class="tutorial-main-card">
+      <div class="tutorial-main-icon"><i class="fas fa-users"></i></div>
+      <h3>Pacientes</h3>
+      <p>Altas, autorizaciones y fichas personales.</p>
+    </div>
+
+    <div class="tutorial-main-card">
+      <div class="tutorial-main-icon"><i class="fas fa-hospital"></i></div>
+      <h3>Prepagas</h3>
+      <p>Configurá las prepagas con las que trabajás.</p>
+    </div>
+
+  </div>
+</section>
+ 
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <p class="section-label">Planes</p>
