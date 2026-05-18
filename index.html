@@ -73,15 +73,24 @@
     filter: drop-shadow(0 0 8px rgba(162,155,254,0.6));
   }
 
+/* Los textos individuales (REEMPLAZADOS CON EL NUEVO DISEÑO) */
   .nav-link {
-    color: #a29bfe;
+    color: #ffffff; 
     text-decoration: none;
-    font-size: 0.9rem;
-    opacity: 0.8;
+    font-size: 1.05rem; 
+    opacity: 0.85;
     transition: opacity 0.2s;
   }
 
   .nav-link:hover { opacity: 1; }
+
+  .nav-link--emphasis {
+    color: #a29bfe !important; 
+    font-weight: 700;
+    opacity: 1;
+    font-size: 1.1rem; 
+    text-shadow: 0 0 12px rgba(162, 155, 254, 0.6), 0 0 25px rgba(162, 155, 254, 0.3);
+  }
 
   .nav-links {
     display: flex;
@@ -89,11 +98,6 @@
     gap: clamp(12px, 3vw, 24px);
     flex-wrap: wrap;
     justify-content: flex-end;
-  }
-
-  .nav-link--emphasis {
-    font-weight: 700;
-    opacity: 1;
   }
 
   .hero {
@@ -314,7 +318,7 @@
 }
 
   .section-label {
-    color: #6c5ce7;
+    color: #ffffff; /* <--- CAMBIADO A BLANCO */
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -325,7 +329,7 @@
   .section-title {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 800;
-    color: #a29bfe; /* <--- CAMBIADO A NUESTRO COLOR DESTACADO */
+    color: white;
     margin-bottom: 16px;
     text-shadow: 0 0 15px rgba(162, 155, 254, 0.2); /* Opcional: un sutil reflejo neón */
   }
@@ -694,15 +698,16 @@
   }
 
  /* --- SECCIÓN NUEVA: VIDEO TUTORIALES (CLON AYUDA) --- */
+  /* --- SECCIÓN NUEVA: VIDEO TUTORIALES (CLON EXACTO DE AYUDA) --- */
   .tutoriales-section {
-    padding: 50px 40px; /* Acoplado a tu nueva premisa de espaciados compactos */
-    max-width: 1350px;  /* Sincronizado con el nuevo ancho extendido */
+    padding: 50px 40px; 
+    max-width: 1350px;  
     margin: 0 auto;
   }
 
   .tutoriales-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas como en la captura */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 24px;
     margin-top: 40px;
   }
@@ -713,7 +718,7 @@
     border-radius: 20px;
     padding: 35px 28px;
     text-align: center;
-    text-decoration: none; /* Por si después los convertís en enlaces directos */
+    text-decoration: none; 
     color: inherit;
     transition: all 0.3s ease;
   }
@@ -724,20 +729,30 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
 
+  /* --- AQUÍ ESTÁ LA CLAVE DEL RESPLANDOR CLONADO --- */
   .tutorial-main-icon {
-    width: 54px;
-    height: 54px;
-    background: rgba(108, 92, 231, 0.12);
-    border-radius: 50%; /* Iconos circulares idénticos al clon */
+    width: 60px; /* Tamaño unificado como en ayuda.html */
+    height: 60px; /* Tamaño unificado como en ayuda.html */
+    
+    /* El fondo es más sólido para dar contraste, y el violeta es más intenso */
+    background: rgba(162, 155, 254, 0.1); 
+    
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
+    
+    /* ESTA LÍNEA LOGRA EL EFECTO NEÓN CLONADO */
+    box-shadow: 0 0 15px rgba(162, 155, 254, 0.3); 
   }
 
   .tutorial-main-icon i {
     color: #a29bfe;
-    font-size: 1.3rem;
+    font-size: 1.5rem; /* Tamaño de dibujo corregido, más grande */
+    
+    /* Resplandor sutil también en el icono de dibujo */
+    filter: drop-shadow(0 0 5px rgba(162, 155, 254, 0.5));
   }
 
   .tutorial-main-card h3 {
@@ -753,16 +768,15 @@
     line-height: 1.6;
   }
 
-  /* Adaptabilidad para el clon de tutoriales */
   @media (max-width: 992px) {
     .tutoriales-grid {
-      grid-template-columns: repeat(2, 1fr); /* Pasa a 2 columnas en tablet */
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 650px) {
     .tutoriales-grid {
-      grid-template-columns: 1fr; /* Uno abajo del otro en celu */
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -778,7 +792,7 @@
     Gestión PSI
   </div>
   <div class="nav-links">
-    <a href="ayuda.html" class="nav-link">Ayuda y Tutoriales</a>
+    <a href="ayuda.html" class="nav-link">Tutoriales y Ayuda</a>
     <a href="#cta" class="nav-link nav-link--emphasis">Comenzar gratis</a>
   </div>
 </nav>
