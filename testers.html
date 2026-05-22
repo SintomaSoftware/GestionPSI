@@ -26,7 +26,7 @@
     outline-offset: 3px;
   }
 
-  /* NAV (clonado de index.html) */
+  /* NAV */
   nav {
     position: fixed;
     top: 0;
@@ -77,8 +77,8 @@
   }
 
   /* HERO TESTERS */
-.hero-testers {
-    min-height: 60vh;
+  .hero-testers {
+    min-height: 40vh;
     display: flex;
     align-items: center;
     padding: 140px 40px 20px;
@@ -123,68 +123,19 @@
     color: white;
   }
 
-  .hero-content .privacy-note {
-    color: #b2bec3;
-    font-size: 0.95rem;
-  }
-
-  .hero-content .privacy-note a {
+  .hero-content p a {
     color: #a29bfe;
     text-decoration: none;
   }
 
-  .hero-content .privacy-note a:hover {
+  .hero-content p a:hover {
     text-decoration: underline;
   }
 
-  .cta-wrapper {
-      text-align: center;
-      margin-top: 24px;
-    }
- 
-  .cta-primary {
-    background: #6c5ce7;
-    color: white;
-    padding: 16px 32px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s;
-    box-shadow: 0 4px 20px rgba(108,92,231,0.4);
-  }
-
-  .cta-primary:hover {
-    background: #7d6ff0;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(108,92,231,0.5);
-  }
-
-  .hero-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
-  }
-
-  .hero-tag {
-    background: rgba(8,8,12,0.45);
-    border: 1px solid rgba(162,155,254,0.45);
-    color: #d6d2ff;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
-  /* SECCIÓN DE PASOS */
+  /* SECCIÓN DE PASOS (LAYOUT VERTICAL CON FLECHAS) */
   .steps-section {
     padding: 30px 40px;
-    max-width: 1100px;
+    max-width: 700px;
     margin: 0 auto;
   }
 
@@ -194,6 +145,7 @@
     color: #a29bfe;
     margin-bottom: 16px;
     text-shadow: 0 0 15px rgba(162, 155, 254, 0.2);
+    text-align: center;
   }
 
   .section-subtitle {
@@ -201,28 +153,30 @@
     font-size: 1rem;
     line-height: 1.7;
     margin-bottom: 40px;
+    text-align: center;
   }
 
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 40px;
+  .steps-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 
   .step-card {
     background: linear-gradient(145deg, #1e2021, #161718);
     border: 1px solid rgba(162,155,254,0.15);
     border-radius: 20px;
-    padding: 32px 28px;
+    padding: 28px 32px;
     text-align: center;
     transition: all 0.3s;
     position: relative;
+    width: 100%;
+    max-width: 600px;
   }
 
   .step-card:hover {
     border-color: rgba(162,155,254,0.4);
-    transform: translateY(-4px);
   }
 
   .step-number {
@@ -261,19 +215,97 @@
   }
 
   .step-card h3 {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: white;
     margin-bottom: 12px;
   }
 
   .step-card p {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     color: #b2bec3;
     line-height: 1.6;
   }
 
-  /* SECCIÓN TUTORIALES (clonada de index.html) */
+  /* FLECHA CONECTORA */
+  .step-arrow {
+    color: #a29bfe;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 8px rgba(162, 155, 254, 0.4));
+    animation: flecha-bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes flecha-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  /* BOTONES DE ACCIÓN ENTRE PASOS */
+  .action-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0;
+  }
+
+  .cta-primary {
+    background: #6c5ce7;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(108,92,231,0.4);
+  }
+
+  .cta-primary:hover {
+    background: #7d6ff0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(108,92,231,0.5);
+  }
+
+  .cta-secondary {
+    background: transparent;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    border: 1px solid rgba(162,155,254,0.5);
+  }
+
+  .cta-secondary:hover {
+    background: rgba(162,155,254,0.08);
+    border-color: #a29bfe;
+    transform: translateY(-2px);
+  }
+
+  .hero-tag {
+    background: rgba(8,8,12,0.45);
+    border: 1px solid rgba(162,155,254,0.45);
+    color: #d6d2ff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* SECCIÓN TUTORIALES */
   .tutoriales-section {
     padding: 50px 40px;
     max-width: 1100px;
@@ -326,7 +358,7 @@
     line-height: 1.6;
   }
 
-  /* SECCIÓN FEEDBACK FORM (clonada de ayuda.html) */
+  /* SECCIÓN FEEDBACK FORM */
   .support-section {
     background: #0d0d0f;
     border-radius: 24px;
@@ -456,7 +488,6 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    .steps-grid { grid-template-columns: 1fr; }
     .tutoriales-grid { grid-template-columns: repeat(2, 1fr); }
     .contact-form { grid-template-columns: 1fr; }
     .form-group.full-width, .btn-submit { grid-column: span 1; }
@@ -464,10 +495,12 @@
 
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
-    .hero-testers { padding: 120px 20px 40px; }
+    .hero-testers { padding: 120px 20px 20px; }
     .steps-section, .tutoriales-section { padding-left: 20px; padding-right: 20px; }
     .support-section { padding: 30px 20px; margin: 40px 20px; }
     footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    .step-card { padding: 24px 20px; }
+    .cta-primary, .cta-secondary { padding: 14px 24px; font-size: 0.95rem; }
   }
 </style>
 </head>
@@ -496,57 +529,74 @@
     <p>
       Durante esta prueba beta vas a tener acceso anticipado a todas las funcionalidades.
       <strong>Tus datos están protegidos con cifrado</strong> y se manejan según nuestra
-      <a href="privacy.html" style="color: #a29bfe;">política de privacidad</a>.
+      <a href="privacy.html">política de privacidad</a>.
     </p>
     <p>
       Tu feedback es clave: estás probando la app antes de que esté disponible para todo el público.
     </p>
-
-    <div class="cta-wrapper">
-      <a href="#" id="ctaInscripcion" class="cta-primary">
-        Inscribirme como Tester
-      </a>
-    </div>
-
-    <div class="hero-tags" style="justify-content: center;">
-      <span class="hero-tag"><i class="fab fa-android"></i> Solo Android</span>
-    </div>
   </div>
 </section>
 
-<!-- PASOS PARA PARTICIPAR -->
+<!-- PASOS PARA PARTICIPAR (LAYOUT VERTICAL CON FLECHAS) -->
 <section class="steps-section">
-  <p class="section-label">Cómo participar</p>
-  <h2 class="section-title">Tres pasos simples</h2>
+  <p class="section-label" style="text-align: center;">Cómo participar</p>
+  <h2 class="section-title">Dos pasos simples</h2>
   <p class="section-subtitle">El proceso completo te toma menos de 5 minutos.</p>
 
-  <div class="steps-grid">
+  <div class="steps-flow">
+
+    <!-- PASO 1 -->
     <div class="step-card">
       <div class="step-number">1</div>
       <div class="step-icon"><i class="fas fa-user-check"></i></div>
-      <h3>Inscribite</h3>
-      <p>Hacé clic en <strong>"Inscribirme como tester"</strong> desde tu celular Android e iniciá sesión con tu cuenta de Gmail.</p>
+      <h3>Inscribite como tester</h3>
+      <p>
+        Presioná el botón de abajo y en la ventana que se abre, hacé click en
+        <strong>"Convertirse en tester"</strong> para confirmar.
+      </p>
     </div>
 
+    <!-- FLECHA -->
+    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+
+    <!-- BOTÓN 1 + CHIP -->
+    <div class="action-block">
+      <a href="#" id="ctaInscripcion" class="cta-primary" target="_blank" rel="noopener">
+        Inscribirme como Tester
+      </a>
+      <span class="hero-tag"><i class="fab fa-android"></i> Solo Android</span>
+    </div>
+
+    <!-- FLECHA -->
+    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+
+    <!-- PASO 2 -->
     <div class="step-card">
       <div class="step-number">2</div>
       <div class="step-icon"><i class="fab fa-google-play"></i></div>
-      <h3>Instalá la app</h3>
-      <p>Una vez inscripto, vas a poder descargar <strong>Gestión PSI</strong> desde Google Play como cualquier otra app.</p>
+      <h3>Descargá la app</h3>
+      <p>
+        Una vez confirmada la inscripción, descargá <strong>Gestión PSI</strong> desde Google Play.
+        Si dice <em>"no disponible"</em>, esperá unos minutos y volvé a intentar.
+      </p>
     </div>
 
-    <div class="step-card">
-      <div class="step-number">3</div>
-      <div class="step-icon"><i class="fas fa-comment-dots"></i></div>
-      <h3>Compartí tu opinión</h3>
-      <p>Usá la app y contanos qué te pareció. Tu feedback nos ayuda a mejorarla antes del lanzamiento público.</p>
+    <!-- FLECHA -->
+    <div class="step-arrow"><i class="fas fa-chevron-down"></i></div>
+
+    <!-- BOTÓN 2 -->
+    <div class="action-block">
+      <a href="https://play.google.com/store/apps/details?id=com.sintomasoftware.gestionpsi" class="cta-secondary" target="_blank" rel="noopener">
+        <i class="fab fa-google-play"></i> Descargar desde Google Play
+      </a>
     </div>
+
   </div>
 </section>
 
 <!-- VIDEO TUTORIALES -->
 <section class="tutoriales-section" id="tutoriales">
-  <p class="section-label">Recursos</p>
+  <p class="section-label" style="text-align: center;">Recursos</p>
   <h2 class="section-title">Video Tutoriales</h2>
   <p class="section-subtitle">Guías rápidas en video para dominar cada herramienta del sistema.</p>
 
@@ -657,7 +707,7 @@
   document.getElementById('ctaInscripcion').setAttribute('href', OPT_IN_URL);
 
   // ============================================================
-  // Lógica del formulario (igual que en ayuda.html)
+  // Lógica del formulario
   // ============================================================
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsNI91AKtzNHLfasbtbmdGf4e-QGTM8ExUo-G5c6okhTvXIKVKkQyygY5Qv_e2VOFWBA/exec';
   const MAX_BYTES = 2 * 1024 * 1024;
