@@ -77,11 +77,11 @@
   }
 
   /* HERO TESTERS */
-  .hero-testers {
+.hero-testers {
     min-height: 60vh;
     display: flex;
     align-items: center;
-    padding: 140px 40px 60px;
+    padding: 140px 40px 20px;
     max-width: 1100px;
     margin: 0 auto;
   }
@@ -137,6 +137,11 @@
     text-decoration: underline;
   }
 
+  .cta-wrapper {
+      text-align: center;
+      margin-top: 24px;
+    }
+ 
   .cta-primary {
     background: #6c5ce7;
     color: white;
@@ -150,7 +155,6 @@
     gap: 10px;
     transition: all 0.3s;
     box-shadow: 0 4px 20px rgba(108,92,231,0.4);
-    margin-top: 24px;
   }
 
   .cta-primary:hover {
@@ -179,7 +183,7 @@
 
   /* SECCIÓN DE PASOS */
   .steps-section {
-    padding: 60px 40px;
+    padding: 30px 40px;
     max-width: 1100px;
     margin: 0 auto;
   }
@@ -272,7 +276,7 @@
   /* SECCIÓN TUTORIALES (clonada de index.html) */
   .tutoriales-section {
     padding: 50px 40px;
-    max-width: 1350px;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
@@ -494,17 +498,18 @@
       <strong>Tus datos están protegidos con cifrado</strong> y se manejan según nuestra
       <a href="privacy.html" style="color: #a29bfe;">política de privacidad</a>.
     </p>
-    <p class="privacy-note">
+    <p>
       Tu feedback es clave: estás probando la app antes de que esté disponible para todo el público.
     </p>
 
-    <a href="#" id="ctaInscripcion" class="cta-primary">
-      Inscribirme como tester <i class="fas fa-arrow-right"></i>
-    </a>
+    <div class="cta-wrapper">
+      <a href="#" id="ctaInscripcion" class="cta-primary">
+        Inscribirme como Tester
+      </a>
+    </div>
 
-    <div class="hero-tags">
+    <div class="hero-tags" style="justify-content: center;">
       <span class="hero-tag"><i class="fab fa-android"></i> Solo Android</span>
-      <span class="hero-tag"><i class="fas fa-envelope"></i> Cuenta Gmail requerida</span>
     </div>
   </div>
 </section>
