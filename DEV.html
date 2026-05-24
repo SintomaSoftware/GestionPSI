@@ -53,7 +53,22 @@
         iframeSrc += `?e=${encodeURIComponent(sesionEmail)}&t=${encodeURIComponent(sesionToken)}&w=${encodeURIComponent(walkthrough)}`;
         }
 
-        document.getElementById('appFrame').src = iframeSrc;
+       document.getElementById('appFrame').src = iframeSrc;
+
+        // ============================================================
+        // Listener para cerrar sesión desde el iframe
+        // El iframe está sandboxed y no puede hacer reload del top.
+        // Le delegamos esta acción al padre, que sí puede.
+        // ============================================================
+        window.addEventListener('message', function(event) {
+          if (event.data && event.data.tipo === 'cerrarSesion') {
+            console.log('Mensaje cerrarSesion recibido desde el iframe');
+            localStorage.removeItem("usuario_gestion_psi");
+            localStorage.removeItem("token_gestion_psi");
+            localStorage.removeItem("psi_onboarding_status");
+            window.location.reload();
+          }
+        });
     </script>
 </body>
 </html>
