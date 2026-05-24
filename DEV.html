@@ -24,16 +24,13 @@
 </head>
 <body>
     <iframe id="appFrame" src="" allow="geolocation; microphone; camera; fullscreen"></iframe>
-
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsNI91AKtzNHLfasbtbmdGf4e-QGTM8ExUo-G5c6okhTvXIKVKkQyygY5Qv_e2VOFWBA/exec";
-
         // ¿Vienen datos de sesión desde paginaPuente?
         const params = new URLSearchParams(window.location.search);
         const email = params.get('e');
         const token = params.get('t');
         const walkthrough = params.get('w');
-
         if (email && token) {
             // Guardar en localStorage de sintomasoftware.com.ar
             localStorage.setItem("usuario_gestion_psi", decodeURIComponent(email));
@@ -42,33 +39,36 @@
             // Limpiar URL
             window.history.replaceState({}, document.title, "/");
         }
-
         // Construir URL del iframe con sesión si existe
         const sesionEmail = localStorage.getItem("usuario_gestion_psi");
         const sesionToken = localStorage.getItem("token_gestion_psi");
-
         let iframeSrc = SCRIPT_URL;
         if (sesionEmail && sesionToken) {
         const walkthrough = localStorage.getItem("psi_onboarding_status") || "INACTIVO";
         iframeSrc += `?e=${encodeURIComponent(sesionEmail)}&t=${encodeURIComponent(sesionToken)}&w=${encodeURIComponent(walkthrough)}`;
         }
-
-       document.getElementById('appFrame').src = iframeSrc;
+        document.getElementById('appFrame').src = iframeSrc;
 
         // ============================================================
-        // Listener para cerrar sesión desde el iframe
-        // El iframe está sandboxed y no puede hacer reload del top.
-        // Le delegamos esta acción al padre, que sí puede.
+        // Puente para login con Google nativo desde Android (WebView)
+        // Android llama a esta función con evaluateJavascript.
+        // Recargamos el iframe pasando el email por querystring.
+        // El frontend lo detecta en ejecutarVerificacionInicial() via
+        // google.script.url.getLocation() y dispara la validacion.
         // ============================================================
-        window.addEventListener('message', function(event) {
-          if (event.data && event.data.tipo === 'cerrarSesion') {
-            console.log('Mensaje cerrarSesion recibido desde el iframe');
-            localStorage.removeItem("usuario_gestion_psi");
-            localStorage.removeItem("token_gestion_psi");
-            localStorage.removeItem("psi_onboarding_status");
-            window.location.reload();
-          }
-        });
+        window.loginGoogleDesdeAndroid = function(email) {
+            console.log("loginGoogleDesdeAndroid recibido:", email);
+            if (!email || !email.includes('@')) {
+                console.log("Email invalido, abortando");
+                return;
+            }
+            const iframe = document.getElementById('appFrame');
+            if (!iframe) {
+                console.log("Iframe no encontrado");
+                return;
+            }
+            iframe.src = SCRIPT_URL + '?ga=' + encodeURIComponent(email);
+        };
     </script>
 </body>
 </html>
