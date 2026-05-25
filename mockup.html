@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Mockup Dropdown — Gestión PSI</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #050505;
+  color: #dfe6e9;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.header {
+  background: #6c5ce7;
+  color: white;
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.card {
+  background: linear-gradient(145deg, #1e2021 0%, #161718 100%);
+  border: 2px solid rgba(162, 155, 254, 0.4);
+  border-radius: 24px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.card h5 {
+  color: #ffffff;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+label {
+  color: #a29bfe !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* === DROPDOWN CUSTOM === */
+.psi-select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.psi-select-trigger {
+  background-color: #161718;
+  border: 1px solid rgba(162, 155, 254, 0.2);
+  color: white;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 10px 38px 10px 15px;
+  height: 40px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.psi-select-trigger.placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.psi-select-trigger::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #a29bfe;
+  border-bottom: 2px solid #a29bfe;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+  transition: transform 0.2s;
+}
+
+.psi-select.open .psi-select-trigger::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+.psi-select-trigger:focus {
+  background-color: #1e2021;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 15px rgba(108, 92, 231, 0.4);
+  outline: none;
+}
+
+.psi-select-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #1e2021;
+  border: 1px solid rgba(162, 155, 254, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 5000;
+  -webkit-overflow-scrolling: touch;
+}
+
+.psi-select.open .psi-select-dropdown {
+  display: block;
+}
+
+.psi-select-dropdown::-webkit-scrollbar { width: 0 !important; display: none !important; }
+.psi-select-dropdown { scrollbar-width: none; }
+
+.psi-select-option {
+  padding: 8px 14px;
+  color: white;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.psi-select-option:last-child {
+  border-bottom: none;
+}
+
+.psi-select-option:hover,
+.psi-select-option.active {
+  background: rgba(108, 92, 231, 0.25);
+  color: #ffffff;
+}
+
+.psi-select-option.disabled {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  background: transparent;
+  padding: 6px 14px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.psi-select-option.separator {
+  cursor: default;
+  color: rgba(255, 255, 255, 0.2);
+  padding: 4px 14px;
+  font-size: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Backdrop para cerrar al tocar afuera (solo móvil) */
+.psi-select-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4999;
+  background: transparent;
+}
+
+.psi-select.open .psi-select-backdrop {
+  display: block;
+}
+
+.demo-note {
+  background: rgba(108, 92, 231, 0.1);
+  border-left: 3px solid #6c5ce7;
+  padding: 12px 16px;
+  margin: 20px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #b2bec3;
+}
+
+.demo-note b {
+  color: #a29bfe;
+}
+</style>
+</head>
+<body>
+
+<div class="header">Gestión PSI — Mockup Dropdown</div>
+
+<div class="demo-note">
+  <b>Cómo probar:</b> Tocá cualquier combobox para abrir el dropdown. Compará con cómo se ve hoy en tu app.
+</div>
+
+<div class="card">
+  <h5>Carga de Sesión</h5>
+  
+  <label>Paciente</label>
+  <div class="psi-select" id="select1">
+    <div class="psi-select-trigger placeholder" tabindex="0">
+      Seleccionar Paciente
+    </div>
+    <div class="psi-select-dropdown">
+      <div class="psi-select-option disabled">— Agendados Hoy —</div>
+      <div class="psi-select-option">Malena Prado</div>
+      <div class="psi-select-option">Facundo Arana</div>
+      <div class="psi-select-option separator">───────────────</div>
+      <div class="psi-select-option">Ailen Avena</div>
+      <div class="psi-select-option">Aldana Fekete</div>
+      <div class="psi-select-option">Andrea Creta</div>
+      <div class="psi-select-option">Andreina Gafaro</div>
+      <div class="psi-select-option">Andres Rossi</div>
+      <div class="psi-select-option">Angela Parra</div>
+      <div class="psi-select-option">Belen Marco</div>
+      <div class="psi-select-option">Belen Rosas</div>
+      <div class="psi-select-option">Camila Marchetti</div>
+      <div class="psi-select-option">Claudia Martinez</div>
+      <div class="psi-select-option">Christian Prado</div>
+      <div class="psi-select-option">Etelvino Sanchez</div>
+      <div class="psi-select-option">Gonzalo Araujo</div>
+      <div class="psi-select-option">Javier Altamira</div>
+      <div class="psi-select-option">Joaquin Altamira</div>
+      <div class="psi-select-option">Juan Perez</div>
+      <div class="psi-select-option">Lara Croft</div>
+      <div class="psi-select-option">Leandro Viola</div>
+      <div class="psi-select-option">Marco Antonio</div>
+      <div class="psi-select-option">Martin O'Donell</div>
+      <div class="psi-select-option">Miguel Rodriguez</div>
+      <div class="psi-select-option">Pablo Pandolfi</div>
+      <div class="psi-select-option">Pedro Monti</div>
+    </div>
+    <div class="psi-select-backdrop"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h5>Nuevo Turno</h5>
+  
+  <label>Paciente</label>
+  <div class="psi-select" id="select2">
+    <div class="psi-select-trigger placeholder" tabindex="0">
+      -- Seleccionar --
+    </div>
+    <div class="psi-select-dropdown">
+      <div class="psi-select-option" style="color:#ff7675; font-weight:bold;">REUNIÓN / BLOQUEO</div>
+      <div class="psi-select-option">Malena Prado</div>
+      <div class="psi-select-option">Facundo Arana</div>
+      <div class="psi-select-option">Gonzalo Araujo</div>
+      <div class="psi-select-option">Lara Croft</div>
+    </div>
+    <div class="psi-select-backdrop"></div>
+  </div>
+
+  <label>Recurrencia</label>
+  <div class="psi-select" id="select3">
+    <div class="psi-select-trigger" tabindex="0">
+      Solo esta vez
+    </div>
+    <div class="psi-select-dropdown">
+      <div class="psi-select-option active">Solo esta vez</div>
+      <div class="psi-select-option">Semanal</div>
+      <div class="psi-select-option">Quincenal</div>
+      <div class="psi-select-option">Mensual</div>
+    </div>
+    <div class="psi-select-backdrop"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h5>Alta Paciente</h5>
+  
+  <label>Prepaga</label>
+  <div class="psi-select" id="select4">
+    <div class="psi-select-trigger placeholder" tabindex="0">
+      -- Seleccionar --
+    </div>
+    <div class="psi-select-dropdown">
+      <div class="psi-select-option">Galeno</div>
+      <div class="psi-select-option">Medicus</div>
+      <div class="psi-select-option">OSDE</div>
+      <div class="psi-select-option">Particular</div>
+      <div class="psi-select-option">Swiss Medical</div>
+    </div>
+    <div class="psi-select-backdrop"></div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.psi-select').forEach(function(sel) {
+  var trigger = sel.querySelector('.psi-select-trigger');
+  var dropdown = sel.querySelector('.psi-select-dropdown');
+  var backdrop = sel.querySelector('.psi-select-backdrop');
+  
+  trigger.addEventListener('click', function() {
+    // Cerrar otros
+    document.querySelectorAll('.psi-select.open').forEach(function(other) {
+      if (other !== sel) other.classList.remove('open');
+    });
+    sel.classList.toggle('open');
+  });
+
+  backdrop.addEventListener('click', function() {
+    sel.classList.remove('open');
+  });
+
+  dropdown.querySelectorAll('.psi-select-option').forEach(function(opt) {
+    if (opt.classList.contains('disabled') || opt.classList.contains('separator')) return;
+    opt.addEventListener('click', function() {
+      var texto = opt.textContent.trim();
+      trigger.textContent = texto;
+      trigger.classList.remove('placeholder');
+      dropdown.querySelectorAll('.psi-select-option.active').forEach(function(a) {
+        a.classList.remove('active');
+      });
+      opt.classList.add('active');
+      sel.classList.remove('open');
+    });
+  });
+});
+
+// Cerrar al tocar fuera
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.psi-select')) {
+    document.querySelectorAll('.psi-select.open').forEach(function(sel) {
+      sel.classList.remove('open');
+    });
+  }
+});
+</script>
+
+</body>
+</html>
