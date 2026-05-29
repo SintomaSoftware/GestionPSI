@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     background: #050505;
@@ -18,12 +18,12 @@
     overflow-x: hidden;
     min-height: 100vh;
   }
-
+ 
   a:focus-visible {
     outline: 2px solid #a29bfe;
     outline-offset: 3px;
   }
-
+ 
   /* NAV — idéntico al index */
   nav {
     position: fixed;
@@ -38,7 +38,7 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(162,155,254,0.1);
   }
-
+ 
   .nav-logo {
     display: flex;
     align-items: center;
@@ -48,13 +48,13 @@
     color: white;
     text-decoration: none;
   }
-
+ 
   .nav-logo i {
     color: #a29bfe;
     font-size: 1.4rem;
     filter: drop-shadow(0 0 8px rgba(162,155,254,0.6));
   }
-
+ 
   .nav-links {
     display: flex;
     align-items: center;
@@ -62,7 +62,7 @@
     flex-wrap: wrap;
     justify-content: flex-end;
   }
-
+ 
   .nav-link {
     color: #ffffff;
     text-decoration: none;
@@ -71,9 +71,9 @@
     opacity: 0.85;
     transition: opacity 0.2s;
   }
-
+ 
   .nav-link:hover { opacity: 1; }
-
+ 
   /* PÁGINA PRINCIPAL */
   .page-wrapper {
     min-height: 100vh;
@@ -82,18 +82,18 @@
     justify-content: center;
     padding: 120px 20px 60px;
   }
-
+ 
   .suscripcion-container {
     width: 100%;
     max-width: 480px;
   }
-
+ 
   /* Encabezado */
   .suscripcion-header {
     text-align: center;
     margin-bottom: 36px;
   }
-
+ 
   .suscripcion-header .section-label {
     color: #ffffff;
     font-size: 0.8rem;
@@ -102,20 +102,20 @@
     text-transform: uppercase;
     margin-bottom: 12px;
   }
-
+ 
   .suscripcion-header h1 {
     font-size: clamp(1.6rem, 4vw, 2rem);
     font-weight: 800;
     color: #a29bfe;
     margin-bottom: 8px;
   }
-
+ 
   .suscripcion-header p {
     font-size: 0.9rem;
     color: #b2bec3;
     line-height: 1.6;
   }
-
+ 
   /* Card principal */
   .suscripcion-card {
     background: linear-gradient(145deg, #1e2021, #161718);
@@ -124,7 +124,7 @@
     padding: 40px 36px;
     position: relative;
   }
-
+ 
   /* Badge superior */
   .card-badge {
     position: absolute;
@@ -140,7 +140,7 @@
     letter-spacing: 1px;
     white-space: nowrap;
   }
-
+ 
   /* Precio */
   .precio-bloque {
     text-align: center;
@@ -148,20 +148,20 @@
     padding-bottom: 14px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-
+ 
   .precio-monto {
     font-size: 3.2rem;
     font-weight: 900;
     color: white;
     line-height: 1;
   }
-
+ 
   .precio-monto span {
     font-size: 1rem;
     color: #b2bec3;
     font-weight: 400;
   }
-
+ 
   .precio-nota {
     margin-top: 10px;
     font-size: 0.78rem;
@@ -171,14 +171,14 @@
     justify-content: center;
     gap: 6px;
   }
-
+ 
   .precio-nota i { font-size: 0.7rem; }
-
+ 
   /* Features */
   .features-list {
     margin-bottom: 28px;
   }
-
+ 
   .feature-item {
     display: flex;
     align-items: center;
@@ -187,20 +187,20 @@
     font-size: 0.88rem;
     color: #dfe6e9;
   }
-
+ 
   .feature-item i {
     color: #2ecc71;
     font-size: 0.75rem;
     flex-shrink: 0;
   }
-
+ 
   /* Divisor */
   .divider {
     border: none;
     border-top: 1px solid rgba(255,255,255,0.08);
     margin: 14px 0;
   }
-
+ 
   /* Campo email */
   .email-label {
     font-size: 0.8rem;
@@ -211,12 +211,12 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
   }
-
+ 
   .email-input-wrapper {
     position: relative;
     margin-bottom: 6px;
   }
-
+ 
   .email-input-wrapper i {
     position: absolute;
     left: 14px;
@@ -226,7 +226,7 @@
     font-size: 0.9rem;
     pointer-events: none;
   }
-
+ 
   .email-input {
     width: 100%;
     background: rgba(255,255,255,0.05);
@@ -239,21 +239,21 @@
     transition: border-color 0.2s, background 0.2s;
     outline: none;
   }
-
+ 
   .email-input::placeholder { color: #636e72; }
-
+ 
   .email-input:focus {
     border-color: rgba(162,155,254,0.6);
     background: rgba(162,155,254,0.05);
   }
-
+ 
   .email-hint {
     font-size: 0.75rem;
     color: #636e72;
     margin-bottom: 20px;
     padding-left: 4px;
   }
-
+ 
   /* Label "Pagar con" */
   .mp-label {
     font-size: 0.78rem;
@@ -264,7 +264,7 @@
     text-transform: uppercase;
     margin-bottom: 10px;
   }
-
+ 
   /* Botón MP — imagen oficial 231x50 */
   .btn-mp {
     display: block;
@@ -275,21 +275,21 @@
     margin: 0 auto;
     transition: all 0.25s;
   }
-
+ 
   .btn-mp:hover {
     transform: translateY(-2px);
     filter: drop-shadow(0 6px 16px rgba(255,230,0,0.45));
   }
-
+ 
   .btn-mp:active { transform: translateY(0); }
-
+ 
   .btn-mp img {
     width: 231px;
     height: 50px;
     border-radius: 12px;
     display: block;
   }
-
+ 
   /* Mensaje error */
   .email-error {
     display: none;
@@ -298,7 +298,7 @@
     margin-bottom: 12px;
     padding-left: 4px;
   }
-
+ 
   /* Sello seguridad */
   .seguridad-nota {
     margin-top: 18px;
@@ -309,9 +309,9 @@
     font-size: 0.75rem;
     color: #636e72;
   }
-
+ 
   .seguridad-nota i { font-size: 0.85rem; color: #b2bec3; }
-
+ 
   /* FOOTER */
   footer {
     border-top: 1px solid rgba(255,255,255,0.06);
@@ -324,7 +324,7 @@
     flex-wrap: wrap;
     gap: 16px;
   }
-
+ 
   .footer-logo {
     display: flex;
     align-items: center;
@@ -333,15 +333,15 @@
     font-size: 1.1rem;
     color: white;
   }
-
+ 
   .footer-logo i {
     color: #a29bfe;
     font-size: 1.4rem;
     filter: drop-shadow(0 0 8px rgba(162,155,254,0.6));
   }
-
+ 
   footer p { font-size: 0.8rem; color: #636e72; }
-
+ 
   footer a {
     color: #a29bfe;
     text-decoration: none;
@@ -349,9 +349,9 @@
     opacity: 0.7;
     transition: opacity 0.2s;
   }
-
+ 
   footer a:hover { opacity: 1; }
-
+ 
   @media (max-width: 520px) {
     nav { padding: 16px 20px; }
     .suscripcion-card { padding: 36px 24px; }
@@ -360,7 +360,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
@@ -371,20 +371,20 @@
     <a href="ayuda.html" class="nav-link">Tutoriales y Ayuda</a>
   </div>
 </nav>
-
+ 
 <!-- CONTENIDO PRINCIPAL -->
 <main class="page-wrapper">
   <div class="suscripcion-container">
-
+ 
     <div class="suscripcion-header">
       <p class="section-label">Suscripción</p>
       <h1>Continuá sin interrupciones</h1>
       <p>Activá tu suscripción mensual y seguí gestionando tu consultorio.</p>
     </div>
-
+ 
     <div class="suscripcion-card">
       <span class="card-badge">MENSUAL</span>
-
+ 
       <!-- Precio -->
       <div class="precio-bloque">
         <div class="precio-monto">$23.000<span> / mes</span></div>
@@ -393,7 +393,7 @@
           El primer período hasta el día 1 del mes siguiente es sin cargo
         </p>
       </div>
-
+ 
       <!-- Qué incluye -->
       <div class="features-list">
         <div class="feature-item"><i class="fas fa-check"></i> Pacientes ilimitados</div>
@@ -404,9 +404,9 @@
         <div class="feature-item"><i class="fas fa-check"></i> Datos encriptados AES-256</div>
         <div class="feature-item"><i class="fas fa-check"></i> Acceso desde celular y web</div>
       </div>
-
+ 
       <hr class="divider">
-
+ 
       <!-- Email -->
       <label class="email-label" for="email-input">Tu email de acceso a la app</label>
       <div class="email-input-wrapper">
@@ -421,11 +421,11 @@
         >
       </div>
       <p class="email-hint">El mismo email con el que ingresás a Gestión PSI.</p>
-
+ 
       <p class="email-error" id="email-error">
         <i class="fas fa-exclamation-circle"></i> Ingresá un email válido para continuar.
       </p>
-
+ 
       <!-- Botón MercadoPago -->
       <p class="mp-label">Pagar con</p>
       <button class="btn-mp" id="btn-suscribir" onclick="iniciarSuscripcion()">
@@ -434,17 +434,17 @@
       <p style="text-align:center; font-size:0.72rem; color:#ffffff; margin-top:8px; opacity:0.7;">
         Dinero en cuenta &middot; Tarjeta de Crédito / Débito
       </p>
-
+ 
       <!-- Sello seguridad -->
       <div class="seguridad-nota">
         <i class="fas fa-lock"></i>
         Pago seguro procesado por MercadoPago
       </div>
-
+ 
     </div>
   </div>
 </main>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
@@ -454,7 +454,7 @@
   <p>© 2026 Gestión PSI · Sintoma Software</p>
   <a href="/privacy.html">Política de privacidad</a>
 </footer>
-
+ 
 <script>
   // Lee el email del parámetro ?email= si viene en la URL
   (function() {
@@ -465,12 +465,13 @@
       input.value = decodeURIComponent(emailParam);
     }
   })();
-
+ 
   function iniciarSuscripcion() {
     const input = document.getElementById('email-input');
     const errorEl = document.getElementById('email-error');
+    const btnEl = document.getElementById('btn-suscribir');
     const email = input.value.trim();
-
+ 
     // Validación básica
     const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!emailValido) {
@@ -478,14 +479,38 @@
       input.focus();
       return;
     }
-
+ 
     errorEl.style.display = 'none';
-
-    // TODO Sub-fase C: llamar a Apps Script con el email para obtener init_point de MP
-    // Por ahora: placeholder
-    alert('Próximamente: redirigir a MercadoPago con email ' + email);
+    btnEl.style.opacity = '0.6';
+    btnEl.style.pointerEvents = 'none';
+ 
+    const URL_BACKEND = 'https://script.google.com/macros/s/AKfycbxsNI91AKtzNHLfasbtbmdGf4e-QGTM8ExUo-G5c6okhTvXIKVKkQyygY5Qv_e2VOFWBA/exec';
+ 
+    fetch(URL_BACKEND, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ accion: 'iniciar_suscripcion', email: email })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.exito && data.init_point) {
+        window.location.href = data.init_point;
+      } else {
+        errorEl.textContent = data.mensaje || 'Error al conectar con el servidor. Intentá de nuevo.';
+        errorEl.style.display = 'block';
+        btnEl.style.opacity = '1';
+        btnEl.style.pointerEvents = 'auto';
+      }
+    })
+    .catch(() => {
+      errorEl.textContent = 'Error de conexión. Verificá tu internet e intentá de nuevo.';
+      errorEl.style.display = 'block';
+      btnEl.style.opacity = '1';
+      btnEl.style.pointerEvents = 'auto';
+    });
   }
 </script>
-
+ 
 </body>
 </html>
+ 
