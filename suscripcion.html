@@ -488,7 +488,6 @@
  
     fetch(URL_BACKEND, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ accion: 'iniciar_suscripcion', email: email })
     })
     .then(r => r.json())
@@ -513,4 +512,3 @@
  
 </body>
 </html>
- 
