@@ -456,13 +456,37 @@
 </footer>
  
 <script>
-  // Lee el email del parámetro ?email= si viene en la URL
+// Lee parámetros de la URL
   (function() {
     const params = new URLSearchParams(window.location.search);
     const emailParam = params.get('email');
+    const estado = params.get('estado');
+
     if (emailParam) {
       const input = document.getElementById('email-input');
       input.value = decodeURIComponent(emailParam);
+    }
+
+    // Si volvió desde MP con pago exitoso, mostrar mensaje
+    if (estado === 'ok') {
+      document.querySelector('.suscripcion-container').innerHTML = `
+        <div class="suscripcion-header">
+          <p class="section-label" style="color:#2ecc71;">¡Pago exitoso!</p>
+          <h1>Tu suscripción está activa</h1>
+          <p>Ya podés volver a la app y seguir gestionando tu consultorio.</p>
+        </div>
+        <div class="suscripcion-card" style="text-align:center;">
+          <i class="fas fa-check-circle" style="font-size:4rem; color:#2ecc71; margin-bottom:20px;"></i>
+          <p style="color:#dfe6e9; font-size:1rem; line-height:1.7; margin-bottom:24px;">
+            Te llegará un email de confirmación de MercadoPago.<br>
+            Si tenés alguna duda, podés consultar nuestros 
+            <a href="ayuda.html" style="color:#a29bfe;">tutoriales y ayuda</a>.
+          </p>
+          <a href="index.html" class="btn-mp" style="display:inline-block; padding:12px 32px; text-decoration:none; min-height:auto; width:auto;">
+            <span style="font-family:'Nunito',sans-serif; font-weight:800; color:#00377C;">Volver al inicio</span>
+          </a>
+        </div>
+      `;
     }
   })();
  
