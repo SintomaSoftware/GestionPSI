@@ -16,12 +16,26 @@
     <meta name="theme-color" content="#6c5ce7">
     <style>
         body, html { 
-            margin: 0; padding: 0; 
-            height: 100%; width: 100%;
-            overflow: hidden; 
-            background-color: #6c5ce7;
-        }
-        iframe { width: 100%; height: 100%; border: none; }
+                margin: 0; padding: 0; 
+                height: 100%; width: 100%;
+                overflow: hidden; 
+                background-color: #6c5ce7;
+            }
+            iframe { width: 100%; height: 100%; border: none; }
+        
+            /* Solo desktop/tablet ancha (≥600px): centrar el iframe a 505px.
+               En mobile (<600px) esta regla no se aplica: todo queda igual que hoy. */
+            @media (min-width: 600px) {
+                body {
+                    display: flex;
+                    justify-content: center;
+                    background-color: #050505;
+                }
+                iframe {
+                    width: 505px;
+                    max-width: 100%;
+                }
+            }
     </style>
 </head>
 <body>
