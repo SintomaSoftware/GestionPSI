@@ -22,6 +22,17 @@
         background-color: #6c5ce7;
     }
     iframe { width: 100%; height: 100%; border: none; }
+
+    /* Clase que se aplica por JS solo en dispositivos NO móviles (desktop) */
+    body.es-desktop {
+        display: flex;
+        justify-content: center;
+        background-color: #050505;
+    }
+    body.es-desktop iframe {
+        width: 505px;
+        max-width: 100%;
+    }
 </style>
 </head>
 <body>
@@ -30,6 +41,14 @@
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLR7HwaoLaZDBuhrgrr-K8okjBQ2BVVJR4GGDrI5SfX06mRbXmck2SIYLcY841hpME/exec";
 
+        // Detección de dispositivo por user agent: si es móvil/tablet (Android, iOS, etc.)
+        // queda a ancho completo. Solo desktop real recibe el centrado.
+        var ua = navigator.userAgent || '';
+        var esMovil = /Android|iPhone|iPad|iPod|webOS|BlackBerry|Windows Phone|Mobile|Tablet/i.test(ua);
+        if (!esMovil) {
+            document.body.classList.add('es-desktop');
+        }
+        
         // ¿Vienen datos de sesión desde paginaPuente?
         const params = new URLSearchParams(window.location.search);
         const email = params.get('e');
