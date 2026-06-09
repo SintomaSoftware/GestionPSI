@@ -790,6 +790,26 @@
   .cta-badge img {
     transition: filter 0.25s ease;
   }
+
+ /* El badge de Escritorio: el glow envuelve el rectángulo entero, no el iconito */
+  .cta-badge--web:hover,
+  .cta-badge--web:focus-visible {
+    box-shadow:
+      0 0 8px rgba(162, 155, 254, 0.75),
+      0 0 18px rgba(162, 155, 254, 0.5),
+      0 0 28px rgba(108, 92, 231, 0.45);
+  }
+
+  /* Anulamos el glow sobre la imagen interna solo para este badge,
+     para que no brille el iconito además del rectángulo */
+  .cta-badge--web:hover img,
+  .cta-badge--web:focus-visible img {
+    filter: none;
+  }
+
+  .cta-badge--web {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
 </style>
 </head>
 <body>
@@ -1018,7 +1038,7 @@
              alt="Disponible en Google Play" style="height:102px; object-fit:contain;">
       </a>
       <!-- 2. Navegador Web -->
-      <a href="https://sintomasoftware.com.ar/PROD.html" target="_blank" rel="noopener" class="cta-badge"
+      <a href="https://sintomasoftware.com.ar/PROD.html" target="_blank" rel="noopener" class="cta-badge cta-badge--web"
          style="background:#000; border:1px solid rgba(255,255,255,0.85); border-radius:14px; display:flex; align-items:center; justify-content:center; gap:26px; width:260px; height:80px; padding:0 8px; text-decoration:none; box-sizing:border-box; margin:0 auto;">
         <img src="https://sintomasoftware.com.ar/assets/imagenes/web_icon.jpg"
              alt="Web" style="height:52px; width:52px; border-radius:8px; flex-shrink:0;">
