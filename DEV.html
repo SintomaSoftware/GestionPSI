@@ -124,7 +124,8 @@
         // Solo aplica en iOS PWA. Android y web no usan este canal.
         // ============================================================
         window.addEventListener('message', function(event) {
-            if (event.origin !== 'https://script.google.com') return;
+            // Aceptamos mensajes desde script.google.com (cualquier subdominio)
+            if (!event.origin.includes('google.com') && !event.origin.includes('sintomasoftware.com.ar')) return;
             if (event.data && event.data.accion === 'cerrarSesion') {
                 localStorage.clear();
                 document.getElementById('appFrame').src = SCRIPT_URL;
