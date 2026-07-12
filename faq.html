@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Preguntas frecuentes de Gestión PSI: funcionamiento de la app, precios, prueba gratis, seguridad de datos y plataformas disponibles.">
+    <meta name="theme-color" content="#050505">
+    <title>Preguntas Frecuentes - Gestión PSI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #050505;
+            color: #dfe6e9;
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5,5,5,0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(162,155,254,0.1);
+        }
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; color: white; text-decoration: none;
+        }
+
+        .nav-logo i { color: #a29bfe; filter: drop-shadow(0 0 8px rgba(162,155,254,0.6)); }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 1100px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { font-size: 2.5rem; color: white; margin-bottom: 10px; }
+        .header h1 span { color: #a29bfe; }
+        .header p { color: #b2bec3; }
+
+        /* SECCIONES TEMÁTICAS */
+        .faq-block { margin-bottom: 45px; }
+
+        .faq-block-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            color: white;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(162,155,254,0.15);
+        }
+
+        .faq-block-title i {
+            color: #a29bfe;
+            font-size: 1.1rem;
+            filter: drop-shadow(0 0 8px rgba(162,155,254,0.5));
+        }
+
+        /* ACORDEÓN */
+        .faq-item {
+            background: linear-gradient(145deg, #1e2021, #161718);
+            border: 1px solid rgba(162,155,254,0.15);
+            border-radius: 16px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover { border-color: rgba(162,155,254,0.3); }
+        .faq-item.open { border-color: rgba(162,155,254,0.4); }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            padding: 22px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .faq-question:focus-visible {
+            outline: 2px solid #a29bfe;
+            outline-offset: -2px;
+            border-radius: 16px;
+        }
+
+        .faq-question .chevron {
+            color: #a29bfe;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .chevron { transform: rotate(180deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 24px 22px;
+            color: #b2bec3;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        .faq-answer-inner strong { color: #dfe6e9; font-weight: 600; }
+
+        /* BLOQUE DE CIERRE (hacia ayuda.html) */
+        .faq-cta {
+            background: rgba(162,155,254,0.03);
+            border: 1px solid rgba(162,155,254,0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .faq-cta-text h2 { color: white; margin-bottom: 8px; }
+        .faq-cta-text p { color: #b2bec3; }
+
+        .faq-cta-btn {
+            background: #6c5ce7;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(108,92,231,0.3);
+        }
+
+        .faq-cta-btn:hover {
+            background: #7d6ff0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108,92,231,0.4);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .faq-answer, .chevron, .faq-cta-btn { transition: none; }
+            .faq-cta-btn:hover { transform: none; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            nav { padding: 16px 20px; }
+            .main-container { padding: 0 15px; margin-top: 100px; }
+            .header h1 { font-size: 1.8rem; }
+            .faq-question { padding: 18px 18px; font-size: 0.95rem; }
+            .faq-answer-inner { padding: 0 18px 18px; }
+            .faq-cta { padding: 30px 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i> Gestión PSI
+        </a>
+    </nav>
+
+    <div class="main-container">
+        <header class="header">
+            <h1>Preguntas <span>Frecuentes</span></h1>
+            <p>Respuestas rápidas para arrancar y sacarle el máximo provecho a Gestión PSI.</p>
+        </header>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN 1: FUNCIONAMIENTO DE LA APP (extraída de los guiones) -->
+        <!-- ============================================================ -->
+        <div class="faq-block">
+            <h2 class="faq-block-title"><i class="fas fa-mobile-alt"></i> Funcionamiento de la app</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">¿En qué orden tengo que configurar mi consultorio?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    El orden sugerido es sencillo y va de lo general a lo particular. Primero cargás las <strong>prepagas</strong> con las que trabajás; luego das de alta a tus <strong>pacientes</strong> y a cada uno le asignás su prepaga (o lo dejás como particular); después vas a la <strong>agenda</strong> y les reservás el turno, dejando bloqueado el espacio si es recurrente. Con eso tu consultorio ya queda funcionando: solo resta <strong>cargar la sesión</strong> cuando termines cada atención. Es la dinámica que te recomendamos, pero podés adaptarla a tu ritmo.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Si solo atiendo pacientes particulares, ¿necesito cargar prepagas?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    No hace falta. La carga de prepagas es solo para quienes trabajan con obras sociales o coberturas. Si atendés únicamente en forma particular, podés saltear ese paso e ir directamente a cargar tus pacientes y agendar turnos.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Trabajo con distintos planes de una misma prepaga que me liquidan diferente. ¿Cómo los cargo?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Lo recomendable es dar de alta cada plan como una prepaga distinta y dejarlo claro en el nombre. Por ejemplo, <strong>"Galeno - Oro"</strong> y <strong>"Galeno - Azul"</strong> por separado. De esa forma podés cargar el importe que te liquida cada plan de manera independiente y, a futuro, vas a tener los reportes discriminados para cada uno.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">El copago que le cobro al paciente, ¿se configura en la prepaga?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    No. En la pantalla de la prepaga cargás únicamente el importe que <strong>esa institución te liquida</strong> por cada afiliado que atendés. El copago que eventualmente le cobrás al paciente es un valor aparte y se define cuando cargás a cada paciente, porque puede variar de uno a otro.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Qué hago cuando una prepaga actualiza los valores que me liquida?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Cada vez que una prepaga te comunique un ajuste, entrás a su pantalla de configuración, actualizás el importe y tocás <strong>"Guardar Cambios"</strong>. A partir de ese momento, las nuevas sesiones tomarán el valor actualizado. Conviene hacerlo apenas te avisan, así tus reportes reflejan siempre lo que realmente te corresponde.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Dejé de trabajar con una prepaga. ¿Puedo eliminarla?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Sí, desde el ícono de cesto (rojo) podés eliminarla. Si todavía tenés pacientes activos asociados a esa prepaga, el sistema te va a pedir primero que indiques cómo vas a seguir atendiéndolos —de forma particular o con otra institución—, para que ningún paciente quede sin cobertura asignada.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Cómo agendo un turno que se repite todas las semanas?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Al crear el turno vas a poder elegir la <strong>recurrencia</strong>: único (solo esa fecha), semanal, quincenal o mensual. Si elegís semanal, el espacio queda reservado en el mismo día y horario todas las semanas, y solo vas a necesitar entrar a futuro cuando quieras modificar o mover ese turno puntual.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Qué pasa si intento agendar sobre un horario que ya está ocupado?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    El sistema detecta el conflicto automáticamente y te avisa <strong>con quién y en qué horario</strong> se está superponiendo, para que puedas resolverlo antes de guardar. Así evitás dobles turnos y mantenés la agenda ordenada.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Puedo enviarles recordatorios por WhatsApp a mis pacientes?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Sí. Al generar el turno podés activar la opción <strong>"Enviar WhatsApp"</strong>: cuando guardes, se abre el WhatsApp del paciente para que le mandes el recordatorio o el mensaje que quieras. Para que funcione, necesitás haber cargado previamente el número de celular del paciente.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Cómo sé qué turnos ya tienen la sesión cargada?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    En la agenda, los turnos que ya tienen la sesión registrada aparecen con una <strong>estrellita</strong>. Es una forma rápida de detectar si se te pasó cargar alguno. Además, tocando un turno con estrellita podés editar o anular la sesión, por si la registraste con algún error.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Qué es el listado de Deudores y cómo marco una deuda como cobrada?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Es la vista donde ves a todos los pacientes que te quedaron debiendo alguna sesión ya consumida, ordenados de las deudas más antiguas a las más nuevas. Podés filtrar por un paciente para ver todo lo que te adeuda. Cuando cobrás un saldo pendiente, lo seleccionás y tocás <strong>"Confirmar Cobro"</strong>: la deuda se cancela y el total de saldos pendientes de la pantalla principal se actualiza solo.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Qué es el monitor de autorizaciones y cómo funciona el semáforo?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Es el lugar donde controlás a los pacientes que tienen un tope de sesiones autorizadas por su prepaga: cuántas consumieron, cuántas les quedan y desde donde podés renovar los cupos cuando corresponde. El <strong>semáforo</strong> te avisa de un vistazo: <strong>rojo</strong> cuando a un paciente le quedan 1 o 2 sesiones, <strong>amarillo</strong> cuando le quedan 5 o menos, y <strong>verde</strong> el resto. Así sabés a quién hay que renovarle la autorización antes de que se quede sin cupo.
+                </div></div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN 2: PRECIOS, PRUEBA Y SUSCRIPCIÓN                      -->
+        <!-- ⚠️ REVISAR: contenido de negocio redactado a partir de la    -->
+        <!--    landing. Confirmá medio de pago, cancelación y qué pasa   -->
+        <!--    al terminar la prueba antes de publicar.                  -->
+        <!-- ============================================================ -->
+        <div class="faq-block">
+            <h2 class="faq-block-title"><i class="fas fa-tag"></i> Precios, prueba y suscripción</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Cuánto cuesta Gestión PSI?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    La suscripción es un único plan mensual, sin costos ocultos ni compromisos de permanencia, e incluye todas las funciones: pacientes ilimitados, agenda con recurrencias, control financiero completo, gestión de prepagas, monitor de autorizaciones y acceso desde celular y web. Podés ver el precio actualizado en la <a href="suscripcion.html" style="color:#a29bfe; text-decoration:underline;">página de Suscripción</a>.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Cómo funciona la prueba gratis?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Tus <strong>primeros 30 días de uso son gratis</strong>, independientemente de cuándo te suscribas. No necesitás cargar ninguna tarjeta de crédito para empezar: simplemente descargás la app y la probás con tus datos reales, con todas las funciones disponibles. Si no te convence, la desinstalás y listo, <strong>no hay ningún costo oculto</strong> ni cargo automático. Solo pagás si decidís suscribirte para seguir usándola.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Cómo me suscribo y con qué medios puedo pagar?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    La suscripción se activa desde la <a href="suscripcion.html" style="color:#a29bfe; text-decoration:underline;">página de Suscripción</a>: ingresás el mismo email con el que entrás a la app y el pago se procesa de forma segura a través de <strong>MercadoPago</strong>. Podés pagar con dinero en cuenta o con tarjeta de crédito/débito.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Necesito cargar una tarjeta para empezar?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    No. Los primeros 30 días de uso no te piden datos de tarjeta ni ningún medio de pago por adelantado. Empezás a usar la app directamente y solo cargás tus datos de pago cuando decidís suscribirte.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Qué pasa cuando termina la prueba gratis?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Para seguir usando la app con toda tu información ya cargada, activás la suscripción desde la <a href="suscripcion.html" style="color:#a29bfe; text-decoration:underline;">página de Suscripción</a>. Si preferís no continuar, no se te cobra nada. <!-- ⚠️ CONFIRMAR: ¿qué sucede con los datos si no se suscribe? ¿quedan guardados, se bloquea el acceso, hay período de gracia? --> 
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Puedo cancelar cuando quiera?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Sí, no hay permanencia mínima ni penalidades. Podés dar de baja tu suscripción cuando lo necesites. <!-- ⚠️ CONFIRMAR: cómo se cancela exactamente (desde la app, por mail, desde MercadoPago, etc.) y si el servicio sigue activo hasta fin del período pago. -->
+                </div></div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN 3: SEGURIDAD, DATOS Y PRIVACIDAD                      -->
+        <!-- Redactado según privacy.html y confirmación del ing.:        -->
+        <!-- TLS/HTTPS en tránsito + datos en Google Drive/Sheets bajo    -->
+        <!-- cuenta de Sintoma. NO afirmar "AES-256" (no implementado).   -->
+        <!-- ============================================================ -->
+        <div class="faq-block">
+            <h2 class="faq-block-title"><i class="fas fa-shield-alt"></i> Seguridad, datos y privacidad</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Cómo se protege la información de mi consultorio?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Toda la comunicación entre la app y el servidor viaja por una <strong>conexión cifrada TLS/HTTPS</strong>, de modo que tus datos circulan de forma privada. La información se almacena en la <strong>infraestructura de Google</strong> (Google Drive), en un entorno cuyo acceso es administrado exclusivamente por Sintoma Software. Podés ver el detalle completo en nuestra <a href="privacy.html" style="color:#a29bfe; text-decoration:underline;">Política de Privacidad</a>.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Quién puede ver la información que cargo?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Tu información es de acceso exclusivo a través de tu cuenta. Sintoma Software <strong>no vende, alquila ni comparte</strong> tus datos ni los de tus pacientes con empresas de publicidad ni terceros ajenos al funcionamiento de la app. Los datos sensibles se procesan únicamente para que puedas gestionar tu consultorio.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Qué pasa si pierdo o cambio de celular?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Tu información no vive en el teléfono, sino en la infraestructura de Google asociada a tu cuenta. Por eso, al iniciar sesión con tu mismo email desde otro celular o desde la versión web, vas a encontrar todos tus datos disponibles tal como los dejaste.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Puedo eliminar mi cuenta y todos mis datos?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Sí. Podés solicitar la eliminación total de tu cuenta y de todos los registros asociados escribiendo a <strong>contacto@sintomasoftware.com.ar</strong>. El equipo procesa la solicitud en un plazo máximo de <strong>72 horas</strong>.
+                </div></div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SECCIÓN 4: PLATAFORMAS Y USO                                 -->
+        <!-- ⚠️ REVISAR: Android + Web confirmados por la landing;         -->
+        <!--    iOS "próximamente". Confirmá disponibilidad en Play Store -->
+        <!--    (hoy los badges apuntan a #, la app aún no está publicada)-->
+        <!-- ============================================================ -->
+        <div class="faq-block">
+            <h2 class="faq-block-title"><i class="fas fa-desktop"></i> Plataformas y uso</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">¿En qué dispositivos puedo usar Gestión PSI?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Podés usarla en <strong>Android</strong> y también desde la <strong>Web</strong>, para trabajar cómodo en la computadora del consultorio. La versión para <strong>iOS</strong> (iPhone) está en camino y estará disponible próximamente.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Puedo usar la app en el celular y en la computadora a la vez?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Sí. Accedés con tu misma cuenta desde el celular o desde la versión web de escritorio, y tu información está disponible en ambos. Es cómodo para cargar sesiones desde el teléfono entre paciente y paciente, y revisar reportes o gestionar la agenda en una pantalla más grande.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">¿Ya puedo descargarla desde Google Play?<i class="fas fa-chevron-down chevron"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Estamos en la etapa final antes de la publicación en la tienda. En cuanto esté disponible en Google Play, los botones de descarga del sitio te van a llevar directamente a instalarla. Mientras tanto, podés usar la versión web desde el botón <strong>"Ejecutar en Escritorio"</strong>. <!-- ⚠️ CONFIRMAR/ACTUALIZAR cuando la app se publique en Play Store. -->
+                </div></div>
+            </div>
+        </div>
+
+        <!-- BLOQUE DE CIERRE → lleva a ayuda.html (formulario de contacto) -->
+        <section class="faq-cta">
+            <div class="faq-cta-text">
+                <h2>¿No encontraste tu respuesta?</h2>
+                <p>Escribinos y te respondemos a la brevedad por mail.</p>
+            </div>
+            <a href="ayuda.html" class="faq-cta-btn">Ir a soporte <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.06);">
+        <p style="font-size: 0.8rem; color: #636e72;">© 2026 Gestión PSI · Sintoma Software</p>
+    </footer>
+
+    <script>
+        // Acordeón: varias preguntas pueden estar abiertas a la vez.
+        document.querySelectorAll('.faq-question').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var item = btn.closest('.faq-item');
+                var answer = item.querySelector('.faq-answer');
+                var isOpen = item.classList.toggle('open');
+                answer.style.maxHeight = isOpen ? (answer.scrollHeight + 'px') : null;
+            });
+        });
+    </script>
+
+</body>
+</html>
