@@ -119,6 +119,18 @@
                 }
             });
         }
+        // ============================================================
+        // Listener para cerrar sesión desde iOS PWA via postMessage
+        // Solo aplica en iOS PWA. Android y web no usan este canal.
+        // ============================================================
+        window.addEventListener('message', function(event) {
+            if (event.origin !== 'https://script.google.com') return;
+            if (event.data && event.data.accion === 'cerrarSesion') {
+                localStorage.clear();
+                document.getElementById('appFrame').src = SCRIPT_URL;
+            }
+        });
+        
     </script>
 </body>
 </html>
