@@ -3,44 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Política de privacidad de Gestión PSI: cómo protegemos y tratamos la información de tu consultorio.">
+    <meta name="theme-color" content="#050505">
     <title>Política de Privacidad - Gestión PSI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 30px; color: #333; max-width: 850px; margin: auto; }
-        h1 { color: #512da8; border-bottom: 2px solid #512da8; padding-bottom: 10px; }
-        h2 { color: #311b92; margin-top: 25px; }
-        .security-card { background: #f3e5f5; border-radius: 8px; padding: 20px; border-left: 6px solid #512da8; margin: 20px 0; }
-        .footer { margin-top: 40px; font-size: 0.9em; color: #666; border-top: 1px solid #eee; padding-top: 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #050505;
+            color: #dfe6e9;
+            line-height: 1.7;
+        }
+
+        a:focus-visible {
+            outline: 2px solid #a29bfe;
+            outline-offset: 3px;
+        }
+
+        /* NAV — igual al resto del sitio */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100; padding: 18px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5,5,5,0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(162,155,254,0.1);
+        }
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; font-size: 1.1rem; color: white; text-decoration: none;
+        }
+
+        .nav-logo i {
+            color: #a29bfe; font-size: 1.4rem;
+            filter: drop-shadow(0 0 8px rgba(162,155,254,0.6));
+        }
+
+        .nav-links {
+            display: flex; align-items: center;
+            gap: clamp(12px, 3vw, 24px); flex-wrap: wrap; justify-content: flex-end;
+        }
+
+        .nav-link {
+            color: #ffffff; text-decoration: none;
+            font-size: 1.05rem; font-weight: 700; opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover { opacity: 1; }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            max-width: 850px;
+            margin: 120px auto 40px;
+            padding: 0 20px;
+        }
+
+        .doc-header {
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(162,155,254,0.15);
+        }
+
+        .doc-header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 14px;
+        }
+
+        .doc-header h1 span { color: #a29bfe; }
+
+        .doc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            font-size: 0.82rem;
+            color: #636e72;
+        }
+
+        .doc-meta strong { color: #a29bfe; font-weight: 600; }
+
+        .intro {
+            color: #b2bec3;
+            font-size: 0.95rem;
+            margin-bottom: 36px;
+        }
+
+        .intro strong { color: #dfe6e9; }
+
+        h2 {
+            font-size: 1.2rem;
+            color: white;
+            margin: 36px 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 i {
+            color: #a29bfe;
+            font-size: 1rem;
+            filter: drop-shadow(0 0 8px rgba(162,155,254,0.5));
+        }
+
+        p { color: #b2bec3; font-size: 0.92rem; margin-bottom: 12px; }
+        p strong { color: #dfe6e9; font-weight: 600; }
+
+        a.inline-link { color: #a29bfe; text-decoration: underline; }
+
+        /* Tarjeta destacada de seguridad */
+        .security-card {
+            background: linear-gradient(145deg, #1e2021, #161718);
+            border: 1px solid rgba(162,155,254,0.2);
+            border-left: 4px solid #6c5ce7;
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin: 18px 0;
+        }
+
+        .security-card strong { color: white; }
+
+        .security-card p { margin-bottom: 0; color: #b2bec3; }
+
+        /* Lista de datos procesados */
+        ul {
+            list-style: none;
+            margin: 8px 0 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        li {
+            position: relative;
+            padding-left: 28px;
+            color: #b2bec3;
+            font-size: 0.92rem;
+        }
+
+        li::before {
+            content: "\f0da"; /* fa-caret-right */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 8px;
+            top: 1px;
+            color: #a29bfe;
+        }
+
+        li strong { color: #dfe6e9; font-weight: 600; }
+
+        /* FOOTER — igual al resto del sitio */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1350px;
+            margin: 40px auto 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; font-size: 1.1rem; color: white;
+        }
+
+        .footer-logo i {
+            color: #a29bfe; font-size: 1.4rem;
+            filter: drop-shadow(0 0 8px rgba(162,155,254,0.6));
+        }
+
+        footer p { font-size: 0.8rem; color: #636e72; margin-bottom: 0; }
+
+        footer a {
+            color: #a29bfe; text-decoration: none;
+            font-size: 0.8rem; opacity: 0.7; transition: opacity 0.2s;
+        }
+
+        footer a:hover { opacity: 1; }
+
+        @media (max-width: 600px) {
+            nav { padding: 16px 20px; }
+            .main-container { padding: 0 15px; margin-top: 100px; }
+            footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
-    <h1>Política de Privacidad de Gestión PSI</h1>
-    <p><strong>Versión:</strong> 1.2 | <strong>Última actualización:</strong> 16 de marzo de 2026</p>
 
-    <p>En <strong>Sintoma Software</strong>, la privacidad y la seguridad de la información son pilares fundamentales de nuestras soluciones tecnológicas para profesionales de la salud mental. Esta política detalla cómo protegemos los datos que usted gestiona a través de la aplicación.</p>
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-brain"></i> Gestión PSI
+        </a>
+        <div class="nav-links">
+            <a href="ayuda.html" class="nav-link">Tutoriales y Ayuda</a>
+        </div>
+    </nav>
 
-    <h2>1. Seguridad y Cifrado de Información</h2>
-    <div class="security-card">
-        <strong>Protección de Grado Avanzado:</strong><br>
-        Toda la comunicación de datos se realiza bajo protocolos <strong>TLS (HTTPS)</strong>, asegurando que la información viaje de forma privada e inalterable. Adicionalmente, Sintoma Software implementa una capa de <strong>cifrado interno (Base64 UTF-8)</strong> para datos críticos como identificadores de pacientes y notas clínicas antes de su almacenamiento, garantizando que la información sensible permanezca protegida incluso en estado de reposo.
+    <div class="main-container">
+        <header class="doc-header">
+            <h1>Política de <span>Privacidad</span></h1>
+            <div class="doc-meta">
+                <span><strong>Versión:</strong> 2.0</span>
+                <span><strong>Última actualización:</strong> 12 de julio de 2026</span>
+            </div>
+        </header>
+
+        <p class="intro">
+            En <strong>Sintoma Software</strong>, la privacidad y la seguridad de la información son pilares fundamentales de nuestras soluciones tecnológicas para profesionales de la salud mental. Esta política detalla cómo protegemos los datos que gestionás a través de la aplicación.
+        </p>
+
+        <h2><i class="fas fa-shield-alt"></i> 1. Seguridad de la información</h2>
+        <div class="security-card">
+            <p>
+                <strong>Comunicación cifrada:</strong> toda la comunicación entre la aplicación y nuestros servidores se realiza bajo protocolos <strong>TLS (HTTPS)</strong>, asegurando que la información viaje de forma privada e inalterable. Los datos de tu consultorio se almacenan en la <strong>infraestructura de Google</strong> (Google Drive), en un entorno cuyo acceso es administrado exclusivamente por Sintoma Software. Google gestiona la infraestructura y Sintoma Software gestiona el acceso a la información.
+            </p>
+        </div>
+
+        <h2><i class="fas fa-database"></i> 2. Datos procesados</h2>
+        <ul>
+            <li><strong>Identificación profesional:</strong> se utiliza tu correo electrónico exclusivamente para la autenticación y la vinculación con tu entorno de gestión.</li>
+            <li><strong>Datos de gestión:</strong> se procesan nombres, identificadores (DNI/credenciales) y obras sociales para la correcta administración de la ficha del paciente.</li>
+            <li><strong>Coordinación y comunicación:</strong> la aplicación utiliza el número de contacto del paciente para facilitar la coordinación de turnos mediante servicios de mensajería de terceros (WhatsApp), bajo acción directa y control del profesional.</li>
+            <li><strong>Notas de seguimiento:</strong> los campos de observaciones permiten registrar información para el seguimiento del paciente, almacenándose en la infraestructura segura de Google, bajo la administración técnica exclusiva de Sintoma Software.</li>
+        </ul>
+
+        <h2><i class="fas fa-user-shield"></i> 3. Control y eliminación de datos</h2>
+        <p>
+            Sintoma Software reconoce tu derecho sobre la información. Podés solicitar la eliminación total de tu cuenta y de todos los registros asociados escribiendo a <strong>contacto@sintomasoftware.com.ar</strong>. Nuestro equipo procesará la solicitud en un plazo máximo de <strong>72 horas</strong>.
+        </p>
+
+        <h2><i class="fas fa-handshake"></i> 4. Transparencia con terceros</h2>
+        <p>
+            Sintoma Software no comercializa, alquila ni comparte información con empresas de publicidad o terceros ajenos a la funcionalidad técnica de la aplicación. La infraestructura de GitHub se utiliza únicamente para servir la interfaz visual del sitio, de modo que los datos sensibles no transitan por sus servidores.
+        </p>
+
+        <h2><i class="fas fa-envelope"></i> 5. Contacto</h2>
+        <p>
+            Para consultas técnicas o legales, escribinos a <a class="inline-link" href="mailto:contacto@sintomasoftware.com.ar">contacto@sintomasoftware.com.ar</a>.
+        </p>
     </div>
 
-    <h2>2. Datos Procesados</h2>
-    <ul>
-        <li><strong>Identificación Profesional:</strong> Se utiliza su correo electrónico exclusivamente para la autenticación y vinculación con su entorno de gestión.</li>
-        <li><strong>Datos de Gestión:</strong> Se procesan nombres, identificadores (DNI/Credenciales) y obras sociales para la correcta administración de la ficha del paciente.</li>
-        <li><strong>Coordinación y Comunicación:</strong> La aplicación utiliza el número de contacto del paciente para facilitar la coordinación de turnos mediante servicios de mensajería de terceros (WhatsApp), bajo acción directa y control del profesional.</li>
-        <li><strong>Notas de Salud:</strong> Los campos de observaciones permiten registrar información para el seguimiento del paciente, almacenándose de forma centralizada en infraestructura segura de Google Cloud, bajo la administración técnica exclusiva de Sintoma Software.</li>
-    </ul>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            <i class="fas fa-brain"></i>
+            Gestión PSI
+        </div>
+        <p>© 2026 Gestión PSI · Sintoma Software · Buenos Aires, Argentina</p>
+        <a href="index.html">Volver al inicio</a>
+    </footer>
 
-    <h2>3. Control y Eliminación de Datos</h2>
-    <p>Sintoma Software reconoce su derecho sobre la información. En cumplimiento con las normativas internacionales, usted puede solicitar la eliminación total de su cuenta y sus registros asociados escribiendo a <strong>contacto@sintomasoftware.com.ar</strong>. Nuestro equipo procesará su solicitud en un plazo máximo de 72 horas.</p>
-
-    <h2>4. Transparencia con Terceros</h2>
-    <p>Sintoma Software no comercializa, alquila ni comparte información con empresas de publicidad o terceros ajenos a la funcionalidad técnica de la aplicación. La infraestructura de GitHub se utiliza únicamente para servir la interfaz visual, asegurando que los datos sensibles nunca transiten por sus servidores.</p>
-
-    <div class="footer">
-        Para consultas técnicas o legales, por favor contáctenos en: <strong>contacto@sintomasoftware.com.ar</strong><br>
-        © 2026 Sintoma Software - Buenos Aires, Argentina.
-    </div>
 </body>
 </html>
