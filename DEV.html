@@ -70,7 +70,7 @@
         // El frontend lo detecta en ejecutarVerificacionInicial() via
         // google.script.url.getLocation() y dispara la validacion.
         // ============================================================
-        window.loginGoogleDesdeAndroid = function(email) {
+       window.loginGoogleDesdeAndroid = function(email) {
             console.log("loginGoogleDesdeAndroid recibido:", email);
             if (!email || !email.includes('@')) {
                 console.log("Email invalido, abortando");
@@ -83,6 +83,42 @@
             }
             iframe.src = SCRIPT_URL + '?ga=' + encodeURIComponent(email);
         };
+
+        // ============================================================
+        // Puente para login con Google desde iOS PWA
+        // Cuando el OAuth completa, PROD.html recibe ?e= y ?t= y los
+        // guarda en localStorage (ya resuelto arriba). Cuando el usuario
+        // vuelve a la PWA, visibilitychange detecta la sesión nueva
+        // y recarga el iframe autenticado — replicando el flujo de Android.
+        // Solo aplica en iOS PWA (standalone). Android y web no entran acá.
+        // ============================================================
+        var esIOSPWA = /iPhone|iPad|iPod/i.test(navigator.userAgent) &&
+                       window.navigator.standalone === true;
+
+        if (esIOSPWA) {
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible') {
+                    var emailGuardado = localStorage.getItem("usuario_gestion_psi");
+                    var tokenGuardado = localStorage.getItem("token_gestion_psi");
+                    var iframe = document.getElementById('appFrame');
+
+                    // Si hay sesión en localStorage y el iframe aún no la tiene cargada
+                    if (emailGuardado && tokenGuardado && iframe) {
+                        var walkthroughGuardado = localStorage.getItem("psi_onboarding_status") || "ACTIVO";
+                        var srcEsperado = SCRIPT_URL +
+                            '?e=' + encodeURIComponent(emailGuardado) +
+                            '&t=' + encodeURIComponent(tokenGuardado) +
+                            '&w=' + encodeURIComponent(walkthroughGuardado);
+
+                        // Solo recargamos si el iframe no tiene ya esa sesión
+                        if (iframe.src !== srcEsperado) {
+                            console.log("iOS PWA: sesión detectada al volver al foco, cargando app");
+                            iframe.src = srcEsperado;
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
