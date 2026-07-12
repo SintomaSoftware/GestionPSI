@@ -118,6 +118,17 @@
                     }
                 }
             });
+
+            // Polling cada 500ms: si detecta logout solicitado, limpia sesión y recarga iframe
+            setInterval(function() {
+                if (localStorage.getItem('psi_logout_solicitado') === '1') {
+                    localStorage.removeItem('psi_logout_solicitado');
+                    localStorage.removeItem('usuario_gestion_psi');
+                    localStorage.removeItem('token_gestion_psi');
+                    localStorage.removeItem('psi_onboarding_status');
+                    document.getElementById('appFrame').src = SCRIPT_URL;
+                }
+            }, 500);
         }           
     </script>
 </body>
