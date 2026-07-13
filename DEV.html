@@ -83,6 +83,14 @@
             }
             iframe.src = SCRIPT_URL + '?ga=' + encodeURIComponent(email);
         };
-  </script>
+ 
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.accion === 'cerrarSesion') {
+                localStorage.removeItem('usuario_gestion_psi');
+                localStorage.removeItem('token_gestion_psi');
+                localStorage.removeItem('psi_onboarding_status');
+            }
+        });
+    </script>
 </body>
 </html>
