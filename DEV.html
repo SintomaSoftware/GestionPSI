@@ -119,6 +119,16 @@
                 }
             });
         }
+
+        // Limpia sesión cuando el iframe lo solicita via postMessage (todos los dispositivos)
+        window.addEventListener('message', function(event) {
+            if (event.origin !== 'https://n-oza7vapfmlgh4u5s75xwqmm6glaoz24pmak67li-0lu-script.googleusercontent.com') return;
+            if (event.data && event.data.accion === 'cerrarSesion') {
+                localStorage.removeItem('usuario_gestion_psi');
+                localStorage.removeItem('token_gestion_psi');
+                localStorage.removeItem('psi_onboarding_status');
+            }
+        });
     </script>
 </body>
 </html>
