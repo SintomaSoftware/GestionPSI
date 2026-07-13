@@ -42,6 +42,14 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsNI91AKtzNHLfasbtbmdGf4e-QGTM8ExUo-G5c6okhTvXIKVKkQyygY5Qv_e2VOFWBA/exec";
         // ¿Vienen datos de sesión desde paginaPuente?
         const params = new URLSearchParams(window.location.search);
+
+        if (params.get('logout') === '1') {
+            localStorage.removeItem('usuario_gestion_psi');
+            localStorage.removeItem('token_gestion_psi');
+            localStorage.removeItem('psi_onboarding_status');
+            window.history.replaceState({}, document.title, '/');
+        }
+
         const email = params.get('e');
         const token = params.get('t');
         const walkthrough = params.get('w');
