@@ -95,12 +95,20 @@
         var esIOSPWA = /iPhone|iPad|iPod/i.test(navigator.userAgent) &&
                        window.navigator.standalone === true;
 
-        if (esIOSPWA) {
-            document.addEventListener('visibilitychange', function() {
+            if (esIOSPWA) {
+                    document.addEventListener('visibilitychange', function() {
                 if (document.visibilityState === 'visible') {
                     var emailGuardado = localStorage.getItem("usuario_gestion_psi");
                     var tokenGuardado = localStorage.getItem("token_gestion_psi");
                     var iframe = document.getElementById('appFrame');
+
+                    // Sin sesión: cargar iframe limpio para mostrar login
+                    if (!emailGuardado || !tokenGuardado) {
+                        if (iframe && iframe.src !== SCRIPT_URL) {
+                            iframe.src = SCRIPT_URL;
+                        }
+                        return;
+                    }
 
                     // Si hay sesión en localStorage y el iframe aún no la tiene cargada
                     if (emailGuardado && tokenGuardado && iframe) {
