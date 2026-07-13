@@ -42,15 +42,6 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsNI91AKtzNHLfasbtbmdGf4e-QGTM8ExUo-G5c6okhTvXIKVKkQyygY5Qv_e2VOFWBA/exec";
         // ¿Vienen datos de sesión desde paginaPuente?
         const params = new URLSearchParams(window.location.search);
-
-        // Logout solicitado desde iOS PWA
-        if (params.get('logout') === '1') {
-            localStorage.removeItem('usuario_gestion_psi');
-            localStorage.removeItem('token_gestion_psi');
-            localStorage.removeItem('psi_onboarding_status');
-            window.history.replaceState({}, document.title, '/');
-        }
-
         const email = params.get('e');
         const token = params.get('t');
         const walkthrough = params.get('w');
@@ -105,19 +96,11 @@
                        window.navigator.standalone === true;
 
             if (esIOSPWA) {
-                    document.addEventListener('visibilitychange', function() {
+            document.addEventListener('visibilitychange', function() {
                 if (document.visibilityState === 'visible') {
                     var emailGuardado = localStorage.getItem("usuario_gestion_psi");
                     var tokenGuardado = localStorage.getItem("token_gestion_psi");
                     var iframe = document.getElementById('appFrame');
-
-                    // Sin sesión: cargar iframe limpio para mostrar login
-                    if (!emailGuardado || !tokenGuardado) {
-                        if (iframe && iframe.src !== SCRIPT_URL) {
-                            iframe.src = SCRIPT_URL;
-                        }
-                        return;
-                    }
 
                     // Si hay sesión en localStorage y el iframe aún no la tiene cargada
                     if (emailGuardado && tokenGuardado && iframe) {
@@ -135,17 +118,7 @@
                     }
                 }
             });
-
-            // Escucha logout desde el iframe via postMessage
-            window.addEventListener('message', function(event) {
-                if (event.data && event.data.accion === 'cerrarSesion') {
-                    localStorage.removeItem('usuario_gestion_psi');
-                    localStorage.removeItem('token_gestion_psi');
-                    localStorage.removeItem('psi_onboarding_status');
-                    document.getElementById('appFrame').src = SCRIPT_URL;
-                }
-            });
-        }           
+        }
     </script>
 </body>
 </html>
