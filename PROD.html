@@ -8,8 +8,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">        
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Gestión PSI">
-    <meta name="google" content="notranslate">
-    <link rel="canonical" href="https://sintomasoftware.com.ar/PROD.html">
     <link rel="apple-touch-icon" href="cerebro.png?v=4">
     <link rel="icon" type="image/png" href="cerebro.png?v=4">
     <link rel="manifest" href="manifest-prod.json">
@@ -23,38 +21,38 @@
     }
     iframe { width: 100%; height: 100%; border: none; }
 
-    /* Clase que se aplica por JS solo en dispositivos NO móviles (desktop) */
-    body.es-desktop {
-        display: flex;
-        justify-content: center;
-        background-color: #050505;
-    }
-    body.es-desktop iframe {
-        width: 505px;
-        max-width: 100%;
+    /* Solo desktop/tablet ancha (≥600px): centrar el iframe a 505px.
+       En mobile (<600px) esta regla no se aplica: todo queda igual que hoy. */
+    @media (min-width: 600px) {
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: #050505;
+        }
+        iframe {
+            width: 505px;
+            max-width: 100%;
+        }
     }
 </style>
 </head>
 <body>
     <iframe id="appFrame" src="" allow="geolocation; microphone; camera; fullscreen"></iframe>
-
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLR7HwaoLaZDBuhrgrr-K8okjBQ2BVVJR4GGDrI5SfX06mRbXmck2SIYLcY841hpME/exec";
-
-        // Detección de dispositivo por user agent: si es móvil/tablet (Android, iOS, etc.)
-        // queda a ancho completo. Solo desktop real recibe el centrado.
-        var ua = navigator.userAgent || '';
-        var esMovil = /Android|iPhone|iPad|iPod|webOS|BlackBerry|Windows Phone|Mobile|Tablet/i.test(ua);
-        if (!esMovil) {
-            document.body.classList.add('es-desktop');
-        }
-        
         // ¿Vienen datos de sesión desde paginaPuente?
         const params = new URLSearchParams(window.location.search);
+
+        if (params.get('logout') === '1') {
+            localStorage.removeItem('usuario_gestion_psi');
+            localStorage.removeItem('token_gestion_psi');
+            localStorage.removeItem('psi_onboarding_status');
+            window.history.replaceState({}, document.title, '/');
+        }
+
         const email = params.get('e');
         const token = params.get('t');
         const walkthrough = params.get('w');
-
         if (email && token) {
             // Guardar en localStorage de sintomasoftware.com.ar
             localStorage.setItem("usuario_gestion_psi", decodeURIComponent(email));
@@ -63,17 +61,14 @@
             // Limpiar URL
             window.history.replaceState({}, document.title, "/");
         }
-
         // Construir URL del iframe con sesión si existe
         const sesionEmail = localStorage.getItem("usuario_gestion_psi");
         const sesionToken = localStorage.getItem("token_gestion_psi");
-
         let iframeSrc = SCRIPT_URL;
         if (sesionEmail && sesionToken) {
         const walkthrough = localStorage.getItem("psi_onboarding_status") || "INACTIVO";
         iframeSrc += `?e=${encodeURIComponent(sesionEmail)}&t=${encodeURIComponent(sesionToken)}&w=${encodeURIComponent(walkthrough)}`;
         }
-
         document.getElementById('appFrame').src = iframeSrc;
 
         // ============================================================
@@ -83,7 +78,7 @@
         // El frontend lo detecta en ejecutarVerificacionInicial() via
         // google.script.url.getLocation() y dispara la validacion.
         // ============================================================
-        window.loginGoogleDesdeAndroid = function(email) {
+       window.loginGoogleDesdeAndroid = function(email) {
             console.log("loginGoogleDesdeAndroid recibido:", email);
             if (!email || !email.includes('@')) {
                 console.log("Email invalido, abortando");
@@ -96,6 +91,14 @@
             }
             iframe.src = SCRIPT_URL + '?ga=' + encodeURIComponent(email);
         };
+ window.addEventListener('message', function(event) {
+            if (event.data && event.data.accion === 'cerrarSesion') {
+                localStorage.removeItem('usuario_gestion_psi');
+                localStorage.removeItem('token_gestion_psi');
+                localStorage.removeItem('psi_onboarding_status');
+                window.location.replace(window.location.href.split('?')[0]);
+            }
+        });
     </script>
 </body>
 </html>
