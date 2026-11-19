@@ -78,18 +78,18 @@
         // El frontend lo detecta en ejecutarVerificacionInicial() via
         // google.script.url.getLocation() y dispara la validacion.
         // ============================================================
-       window.loginGoogleDesdeAndroid = function(email) {
-            console.log("loginGoogleDesdeAndroid recibido:", email);
-            if (!email || !email.includes('@')) {
-                console.log("Email invalido, abortando");
-                return;
-            }
+       window.loginGoogleDesdeAndroid = function(dato) {
             const iframe = document.getElementById('appFrame');
-            if (!iframe) {
-                console.log("Iframe no encontrado");
+            if (!iframe || !dato) return;
+            // App nueva (23+): llega la prueba firmada de Google (ID token)
+            if (dato.split('.').length === 3 && !dato.includes('@')) {
+                iframe.src = SCRIPT_URL + '?gt=' + encodeURIComponent(dato);
                 return;
             }
-            iframe.src = SCRIPT_URL + '?ga=' + encodeURIComponent(email);
+            // App vieja (22): llega el email; el servidor responde "Acceso Denegado" con el aviso
+            if (dato.includes('@')) {
+                iframe.src = SCRIPT_URL + '?ga=' + encodeURIComponent(dato);
+            }
         };
  window.addEventListener('message', function(event) {
             if (event.data && event.data.accion === 'cerrarSesion') {
